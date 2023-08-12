@@ -1,55 +1,86 @@
-<nav>
-    <div class="nav-wrapper">
-        <a href="javascript:void(0)" class="brand-logo">
-            <span class="text">
-                <p>Barber chair</p>
-            </span>
-        </a>
-        <ul class="left">
-            <li class="hide-on-med-and-down">
-                <a href="javascript: void(0);" class="nav-toggle">
-                    <span class="bars bar1"></span>
-                    <span class="bars bar2"></span>
-                    <span class="bars bar3"></span>
-                </a>
-            </li>
-            <li class="hide-on-large-only">
-                <a href="javascript: void(0);" class="sidebar-toggle">
-                    <span class="bars bar1"></span>
-                    <span class="bars bar2"></span>
-                    <span class="bars bar3"></span>
-                </a>
-            </li>
-            <li class="search-box">
-                <a href="javascript: void(0);"><i class="material-icons">search</i></a>
-                <form class="app-search">
-                    <input type="text" class="form-control" placeholder="Search &amp; enter"> <a class="srh-btn"><i class="ti-close"></i></a>
-                </form>
-            </li>
-        </ul>
-         <ul class="right">
-            <li><a class="dropdown-trigger" href="javascript: void(0);" data-target="user_dropdown"><img src="{{ asset('assets/images/users/2.jpg') }}" alt="user" class="circle profile-pic"></a>
-                <ul id="user_dropdown" class="mailbox dropdown-content dropdown-user">
-                    <li>
-                        <div class="dw-user-box">
-                            <div class="u-img"><img src="{{ asset('assets/images/users/2.jpg') }}" alt="user"></div>
-                            <div class="u-text">
-                                <h4>Steve Harvey</h4>
-                                <p>steve@gmail.com</p>
-                                <a class="waves-effect waves-light btn-small red white-text">View Profile</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="material-icons">account_circle</i> My Profile</a></li>
-                    <li><a href="#"><i class="material-icons">account_balance_wallet</i> My Balance</a></li>
-                    <li><a href="#"><i class="material-icons">inbox</i> Inbox</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="material-icons">settings</i> Account Setting</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#"><i class="material-icons">power_settings_new</i> Logout</a></li>
-                </ul>
-            </li>
-        </ul> 
-    </div>
-</nav>
+<nav class="navbar navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-brand">
+                    <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-bars"></i></button>
+                    <button type="button" class="btn-toggle-fullwidth"><i class="fa fa-bars"></i></button>
+                    <a href="index.html">ICONIC</a>
+                </div>
+
+                <div class="navbar-right">
+                    <form id="navbar-search" class="navbar-form search-form">
+                        <input value="" class="form-control" placeholder="Search here..." type="text">
+                        <button type="button" class="btn btn-default"><i class="icon-magnifier"></i></button>
+                    </form>
+
+                    <div id="navbar-menu">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                                    <i class="fa fa-bell"></i>
+                                    <span class="notification-dot"></span>
+                                </a>
+                                <ul class="dropdown-menu notifications">
+                                    <li class="header"><strong>You have 4 new Notifications</strong></li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <i class="icon-info text-warning"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="text">Campaign <strong>Holiday Sale</strong> is nearly reach budget limit.</p>
+                                                    <span class="timestamp">10:00 AM Today</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <i class="icon-like text-success"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="text">Your New Campaign <strong>Holiday Sale</strong> is approved.</p>
+                                                    <span class="timestamp">11:30 AM Today</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <i class="icon-pie-chart text-info"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="text">Website visits from Twitter is 27% higher than last week.</p>
+                                                    <span class="timestamp">04:00 PM Today</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="media">
+                                                <div class="media-left">
+                                                    <i class="icon-info text-danger"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <p class="text">Error on website analytics configurations</p>
+                                                    <span class="timestamp">Yesterday</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="footer"><a href="javascript:void(0);" class="more">See all notifications</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="page-login.html" class="icon-menu"><i class="fa fa-power-off"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>

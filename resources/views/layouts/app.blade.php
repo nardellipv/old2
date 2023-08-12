@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+<title>Old Barber Chair</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Iconic Bootstrap 4.5.0 Admin Template">
+    <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/favicon/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/favicon/apple-icon-60x60.png') }}">
@@ -19,96 +21,66 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/favicon/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
-    <title>Old Barber Chair</title>
 
-    <!-- chartist CSS -->
-    <link href="{{ asset('assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css') }}" rel="stylesheet">
-    <!--c3 CSS -->
-    <link href="{{ asset('assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/dist/css/style.css') }}" rel="stylesheet">
-    <!-- This page CSS -->
-    <link href="{{ asset('assets/dist/css/pages/dashboard1.css') }}" rel="stylesheet">
-    <!-- This page CSS -->
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/charts-c3/plugin.css') }}" /> -->
+
+    <!-- MAIN Project CSS file -->
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 </head>
 
-<body>
-    <div class="main-wrapper" id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <div class="preloader">
+<body data-theme="light" class="font-nunito">
+    <div id="wrapper" class="theme-cyan">
+
+        <!-- Page Loader -->
+        <div class="page-loader-wrapper">
             <div class="loader">
-                <div class="loader__figure"></div>
-                <p class="loader__label">Old Barber Chair...LOADING...</p>
+                <div class="m-t-30"><img src="{{ asset('assets/logo_chico.png') }}" width="48" height="48" alt="old barber"></div>
+                <p>Cargando Espere...</p>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- ============================================================== -->
-        <header class="topbar">
-            <!-- ============================================================== -->
-            <!-- Navbar scss in header.scss -->
-            <!-- ============================================================== -->
-            @include('admin.parts._header')
-            <!-- ============================================================== -->
-            <!-- Navbar scss in header.scss -->
-            <!-- ============================================================== -->
-        </header>
-        <!-- ============================================================== -->
-        <!-- Sidebar scss in sidebar.scss -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <ul id="slide-out" class="sidenav">
-                @include('admin.parts._menu')
+
+        <!-- Top navbar div start -->
+        @include('admin.parts._header')
+
+        <!-- main left menu -->
+        @include('admin.parts._menu')
+
+        <!-- rightbar icon div -->
+        <!-- <div class="right_icon_bar">
+            <ul>
+                <li><a href="app-inbox.html"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="app-chat.html"><i class="fa fa-comments"></i></a></li>
+                <li><a href="app-calendar.html"><i class="fa fa-calendar"></i></a></li>
+                <li><a href="file-dashboard.html"><i class="fa fa-folder"></i></a></li>
+                <li><a href="app-contact.html"><i class="fa fa-id-card"></i></a></li>
+                <li><a href="blog-list.html"><i class="fa fa-globe"></i></a></li>
+                <li><a href="javascript:void(0);"><i class="fa fa-plus"></i></a></li>
+                <li><a href="javascript:void(0);" class="right_icon_btn"><i class="fa fa-angle-right"></i></a></li>
             </ul>
-        </aside>
-        <!-- ============================================================== -->
-        <!-- Sidebar scss in sidebar.scss -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper scss in scafholding.scss -->
-        <!-- ============================================================== -->
-        <div class="page-wrapper">
-            <!-- ============================================================== -->
-            <!-- Container fluid scss in scafholding.scss -->
-            <!-- ============================================================== -->
-            <footer class="center-align m-b-30 m-l-15 m-r-15">Designed by <a href="https://mikant.com.ar" target="_blank">MikAnt</a></footer>
+        </div> -->
+
+        <!-- mani page content body part -->
+        <div id="main-content">
+            @yield('content')
         </div>
+
     </div>
-    <!-- ============================================================== -->
-    <!-- All Required js -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/materialize.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js') }}"></script>
-    <!-- ============================================================== -->
-    <!-- Apps -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/dist/js/app.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app.init.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/app-style-switcher.js') }}"></script>
-    <!-- ============================================================== -->
-    <!-- Custom js -->
-    <!-- ============================================================== -->
-    <script src="{{ asset('assets/dist/js/custom.min.js') }}"></script>
-    <!-- ============================================================== -->
-    <!-- This page plugin js -->
-    <!-- ============================================================== -->
-    <!-- <script src="{{ asset('assets/libs/chartist/dist/chartist.min.js') }}"></script> -->
-    <!-- <script src="{{ asset('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script> -->
-    <!--c3 JavaScript -->
-    <!-- <script src="{{ asset('assets/extra-libs/c3/d3.min.js') }}"></script> -->
-    <!-- <script src="{{ asset('assets/extra-libs/c3/c3.min.js') }}"></script> -->
-    <!-- <script src="{{ asset('assets/libs/chart.js') }}/dist/Chart.min.js') }}"></script> -->
-    <!-- <script src="{{ asset('assets/dist/js/pages/dashboards/dashboard1.js') }}"></script> -->
-    <!-- <script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script> -->
+    <!-- Javascript -->
+    <script src="{{ asset('assets/bundles/libscripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/bundles/vendorscripts.bundle.js') }}"></script>
+
+    <!-- page vendor js file -->
+    <!-- <script src="{{ asset('assets/vendor/toastr/toastr.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/bundles/c3.bundle.js') }}"></script> -->
+
+    <!-- page js file -->
+    <script src="{{ asset('assets/bundles/mainscripts.bundle.js') }}"></script>
+    <!-- <script src="../js/index.js') }}"></script> -->
 </body>
 
 </html>
