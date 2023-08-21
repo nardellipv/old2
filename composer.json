@@ -10,9 +10,11 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2"
+        "laravel/ui": "^4.2",
+        "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {
+        "beyondcode/laravel-query-detector": "^1.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
@@ -26,7 +28,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

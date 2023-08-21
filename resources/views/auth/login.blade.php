@@ -1,89 +1,63 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+    <title>:: Iconic :: Login</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>Old Barber Chair Login</title>
-    <link href="{{ asset('assets/dist/css/style.css') }}" rel="stylesheet">
-    <!-- This page CSS -->
-    <link href="{{ asset('assets/dist/css/pages/authentication.css') }}" rel="stylesheet">
-    <!-- This page CSS -->
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Iconic Bootstrap 4.5.0 Admin Template">
+    <meta name="author" content="WrapTheme, design by: ThemeMakker.com">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
 </head>
 
-<body>
-    <div class="main-wrapper">
-        <div class="preloader">
-            <div class="loader">
-                <div class="loader__figure"></div>
-                <p class="loader__label">Old Barber Chair...LOADING...</p>
-            </div>
-        </div>
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('assets/auth-bg.jpg')}}) no-repeat center center;">
-            <div class="auth-box">
-                <div id="loginform">
-                    <div class="logo">
-                        <span class="db"><img src="{{ asset('assets/logo_chico.png') }}" alt="old barber" style="width: 25%" /></span>
+<body data-theme="light" class="font-nunito">
+    <!-- WRAPPER -->
+    <div id="wrapper" class="theme-cyan">
+        <div class="vertical-align-wrap">
+            <div class="vertical-align-middle auth-main">
+                <div class="auth-box">
+                    <div class="top">
+                        <img src="{{ asset('assets/images/logo-white.svg') }}" alt="Iconic">
                     </div>
-                    <!-- Form -->
-                    <div class="row">
-                        <form class="col s12"  method="POST" action="{{ route('login') }}">
-                          @csrf
-                            <!-- email -->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="email" type="text" class="validate"  name="phone" id="phone" class="form-control  @error('phone') is-invalid @enderror" required>
-                                    <label for="email">Teléfono</label>
-                                </div>
-                                @error('phone')
+                    <div class="card">
+                        <div class="header">
+                            <p class="lead">Ingresar a OldBarberChair</p>
+                        </div>
+                        <div class="body">
+                            <form class="form-auth-small" method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="signin-email" class="control-label sr-only">Email</label>
+                                    <input id="email" type="text" class="form-control" name="email" id="email" class="form-control  @error('email') is-invalid @enderror" placeholder="Email" required>
+
+                                    @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
-                            </div>
-                            <!-- pwd -->
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <input id="password" type="password" class="validate" name="password" id="password" class="form-control  @error('password') is-invalid @enderror" required>
-                                    <label for="password">Password</label>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="row m-t-40">
-                                <div class="col s12">
-                                    <button class="btn-large w100 blue accent-4" type="submit">Ingresar</button>
+                                
+                                <div class="form-group">
+                                    <label for="signin-password" class="control-label sr-only">Password</label>
+                                    <input id="password" type="password" class="form-control" name="password" id="password" class="form-control  @error('password') is-invalid @enderror" placeholder="Contraseña" required>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="center-align m-t-20 db">
-                        ¿Todavía no tenes cuenta? <a href="{{ route('register') }}">Registrate!</a>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/dist/js/materialize.min.js') }}"></script>
-    <script>
-    $('.tooltipped').tooltip();
-    // ============================================================== 
-    // Login and Recover Password 
-    // ============================================================== 
-    $('#to-recover').on("click", function() {
-        $("#loginform").slideUp();
-        $("#recoverform").fadeIn();
-    });
-    $(function() {
-        $(".preloader").fadeOut();
-    });
-    </script>
+    <!-- END WRAPPER -->
 </body>
 
 </html>

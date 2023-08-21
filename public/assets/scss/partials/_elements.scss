@@ -45,10 +45,10 @@
 }
 
 /* toastr notification */
-#toast-container {
+/* #toast-container {
 	> div {
 		@include opacity(1);
-		
+
 		&,
 		&:hover{
 			@include box-shadow(none);
@@ -59,41 +59,41 @@
         @include opacity(.3);
         color: var(--font-white);
         top: -11px;
-        text-shadow: none;        
-    
+        text-shadow: none;
+
         &:hover,
         &:focus {
             @include opacity(.5);
         }
     }
-    
+
     .toast-info {
         background-color: $color-info;
-    
+
         .toast-close-button {
             color: var(--font-white);
         }
     }
-    
+
     .toast-success {
         background-color: $color-success;
-    
+
         .toast-close-button {
             color: darken($color-success, 20%);
         }
     }
-    
+
     .toast-warning {
         background-color: $color-warning;
-    
+
         .toast-close-button {
             color: darken($color-warning, 20%);
         }
     }
-    
+
     .toast-error {
         background-color: $color-danger;
-    
+
         .toast-close-button {
             color: darken($color-danger, 25%);
         }
@@ -103,20 +103,20 @@
         @extend .m-b-0;
         a {
             text-decoration: underline;
-    
+
             &:hover,
             &:focus {
                 text-decoration: none;
                 color: var(--font-white);
             }
         }
-    
+
         .toast-message {
             font-size: 14px;
             line-height: 1.4;
         }
     }
-}
+} */
 
 .list-group-item{
     background-color: var(--card-color);

@@ -17,18 +17,23 @@ return new class extends Migration
             $table->id();
 
             //relaciones
-            $table->foreignId('user_id')
-                ->nullable()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->foreignId('client_id')
+                ->nullable();
 
             $table->foreignId('product_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->constrained();
 
+            $table->foreignId('payment_id')
+                ->constrained();
+
+            $table->foreignId('branch_id')
+                ->constrained();
+
+            /* $table->foreignId('employee_id')
+                ->constrained(); */
+
+            $table->integer('employee_id');
             $table->integer('price');
-            $table->integer('payment')->nullable();
             $table->mediumText('comment')->nullable();
             $table->integer('invoice');
 

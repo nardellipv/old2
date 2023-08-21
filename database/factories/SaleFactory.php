@@ -17,13 +17,15 @@ class SaleFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => rand('1','20'),
+            'client_id' => rand('1','20'),
             'product_id' => rand('1','5'),
+            'payment_id' => rand('1','5'),
+            'branch_id' => rand('1','3'),
+            'employee_id' => rand('1','3'),
             'price' => rand('100','2000'),
-            'payment' => rand('100','2000'),
             'comment' => fake()->sentence(10),
             'invoice' => rand('100','2000'),
-            'created_at' => fake()->dateTimeBetween('-3 year', 'now'),
+            'created_at' => fake()->dateTimeBetween('-1 months', 'now'),
         ];
     }
 }

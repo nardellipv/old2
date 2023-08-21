@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'point_changed' => fake()->numberBetween($min = 1000, $max = 3000),
             'show' => fake()->randomElement(['Y','N']),
             'exchange' => fake()->randomElement(['Y','N']),
+            'branch_id' => rand('1','3'),
         ];
     }
 }

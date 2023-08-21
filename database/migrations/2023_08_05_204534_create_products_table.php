@@ -23,7 +23,12 @@ return new class extends Migration
             $table->integer('point_changed');
             $table->enum('show', ['Y', 'N']);
             $table->enum('exchange', ['Y', 'N']);
-            
+            $table->integer('branch_id');
+
+            //relaciones
+            /* $table->foreignId('branch_id')
+                ->nullable(); */
+
             $table->timestamps();
         });
     }

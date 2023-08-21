@@ -10,6 +10,21 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'offer', 'point', 'show', 'exchange'
+        'name', 'price', 'offer', 'point', 'point_changed', 'show', 'exchange'
     ];
+
+    public function Point()
+    {
+        return $this->hasMany(Point::class);
+    }
+
+    public function Sale()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
+    public function Branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
 }
