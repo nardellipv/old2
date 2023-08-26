@@ -6,6 +6,9 @@ use App\Http\Requests\AddClientRequest;
 use App\Http\Requests\EditClientRequest;
 use App\Models\Branch;
 use App\Models\Client;
+use App\Models\Employee;
+use App\Models\Payment;
+use App\Models\Product;
 
 class ClientController extends Controller
 {
@@ -21,6 +24,21 @@ class ClientController extends Controller
         }
 
         return view('admin.clients.indexClient', compact('clients'));
+    }
+
+    public function profileClient($id)
+    {
+        $client = Client::find($id);
+
+        $products = Product::where('branch_id', checkUserBranch()[1]->id)
+            ->get();
+
+        $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
+            ->get();
+
+        $payments = Payment::get();
+
+        return view('admin.clients.profileClient', compact('client', 'products', 'employees', 'payments'));
     }
 
     public function addNewClient()

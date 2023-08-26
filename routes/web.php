@@ -30,9 +30,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/venta-sin-cliente', [App\Http\Controllers\SaleController::class, 'saleWithOutClient'])->name('sale.withOutClient');
 
-    Route::get('/venta', [App\Http\Controllers\SaleController::class, 'saleClient'])->name('sale.saleClient');
+    Route::post('/cliente-vender/{id}', [App\Http\Controllers\SaleController::class, 'saleClient'])->name('sale.client');
 
     Route::get('/cliente', [App\Http\Controllers\ClientController::class, 'listClient'])->name('list.client');
+    Route::get('/perfil-cliente/{id}', [App\Http\Controllers\ClientController::class, 'profileClient'])->name('profile.client');
     Route::get('/cliente/agregar-nuevo', [App\Http\Controllers\ClientController::class, 'addNewClient'])->name('addNew.client');
     Route::post('/cliente/agregar', [App\Http\Controllers\ClientController::class, 'addClient'])->name('add.client');
     Route::get('/cliente/editar/{id}', [App\Http\Controllers\ClientController::class, 'editClient'])->name('edit.client');
