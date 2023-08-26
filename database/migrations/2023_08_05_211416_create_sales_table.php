@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             //relaciones
-            $table->foreignId('client_id')
+            /* $table->foreignId('client_id')
                 ->nullable();
 
             $table->foreignId('product_id')
@@ -27,11 +27,15 @@ return new class extends Migration
                 ->constrained();
 
             $table->foreignId('branch_id')
-                ->constrained();
+                ->constrained(); */
 
             /* $table->foreignId('employee_id')
                 ->constrained(); */
 
+            $table->integer('client_id');
+            $table->integer('product_id');
+            $table->integer('payment_id');
+            $table->integer('branch_id');
             $table->integer('employee_id');
             $table->integer('price');
             $table->mediumText('comment')->nullable();

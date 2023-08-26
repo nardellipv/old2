@@ -10,7 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'price', 'offer', 'point', 'point_changed', 'show', 'exchange'
+        'name', 'price', 'offer', 'point', 'point_changed', 'show', 'exchange', 'branch_id'
     ];
 
     public function Point()

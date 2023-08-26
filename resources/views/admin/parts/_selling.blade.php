@@ -16,30 +16,32 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($products as $product)
                             <form method="post" action="{{ route('sale.withOutClient') }}">
                                 @csrf
-                                @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product->name }} - ${{ $product->price }}</td>
+                                    <input value="{{ $product->id }}" name="product_id" hidden>
+                                    <input value="{{ $product->price }}" name="price" hidden>
                                     <td>
                                         @if(!empty(checkUserBranch()[1]))
                                         <div class="input-group">
                                             <select class="custom-select" id="inputGroupSelect04" name="payment_id">
-                                                <!-- <option value="0">Elegir Medio de Pago</option>
-                                                <option disabled>----------------</option> -->
+                                                <option value="">Elegir Medio de Pago</option>
+                                                <option disabled>----------------</option>
                                                 @foreach ($payments as $payment)
                                                 <option value="{{ $payment->id }}">{{ $payment->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <input value="{{ $product->id }}" name="product_id" hidden>
+
                                     </td>
 
                                     <td>
                                         <div class="input-group">
                                             <select class="custom-select" id="inputGroupSelect04" name="employee_id">
-                                                <!-- <option value="0">Elegir Barbero</option>
-                                                <option disabled>----------------</option> -->
+                                                <option value="">Elegir Barbero</option>
+                                                <option disabled>----------------</option>
                                                 @foreach ($employees as $employee)
                                                 <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                                                 @endforeach
@@ -64,12 +66,12 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <button type="submit" class="btn btn-success" disabled title="Save"><span class="sr-only">Save</span> <i class="fa fa-credit-card"></i></button>
+                                        <button type="submit" class="btn btn-success" disabled title="Save"><span class="sr-only">Vender</span> <i class="fa fa-credit-card"></i></button>
                                     </td>
                                     @endif
                                 </tr>
-                                @endforeach
                             </form>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

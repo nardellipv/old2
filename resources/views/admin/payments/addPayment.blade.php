@@ -13,7 +13,7 @@
                     @csrf
                     <div class="form-group">
                         <label>Nombre Medio de Pago</label>
-                        <input type="text" class="form-control" name="name" placeholder="Visa" required>
+                        <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Visa" required>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary">Agregar</button>

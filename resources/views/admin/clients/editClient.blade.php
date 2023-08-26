@@ -6,37 +6,38 @@
         @include('alerts.error')
         <div class="card">
             <div class="header">
-                <h2>Agregar Nuevo Barbero</h2>
+                <h2>Editar Cliente <b>{{ $client->name }}</b></h2>
             </div>
             <div class="body">
-                <form id="basic-form" method="post" action="{{ route('add.employee') }}">
+                <form id="basic-form" method="post" action="{{ route('upgrade.client', $client) }}">
                     @csrf
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre Barbero" required>
+                        <input type="text" class="form-control" name="name" value="{{ $client->name, old('name') }}" placeholder="Nombre Cliente" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="centro@oldbarberchair.com.ar">
+                        <input type="email" class="form-control" name="email" value="{{ $client->email, old('email') }}" placeholder="centro@ejemplo.com.ar">
                     </div>
                     <div class="form-group">
-                        <label>Dirección</label>
-                        <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="San Martín 567, ciudad" required>
+                        <label>Cumpleaños</label>
+                        <input type="date" class="form-control" value="{{ $client->birthday, old('birthday') }}" name="birthday">
                     </div>
                     <div class="form-group">
                         <label>Teléfono</label>
-                        <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="1233345" required>
+                        <input type="text" class="form-control" value="{{ $client->phone, old('phone') }}" name="phone" placeholder="23123434" required>
                     </div>
                     <div class="form-group">
                         <label>Sucursal</label>
                         <select class="custom-select" id="inputGroupSelect04" name="branch_id">
+                            <option value="{{ $client->branch->id }}">{{ $client->branch->name }}</option>
                             @foreach ($branches as $branch)
                             <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn btn-primary">Editar</button>
                 </form>
             </div>
         </div>

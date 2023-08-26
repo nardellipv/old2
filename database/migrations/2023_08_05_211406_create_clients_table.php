@@ -21,10 +21,11 @@ return new class extends Migration
             $table->date('birthday');
             $table->integer('phone')->nullable();
             $table->integer('total_points');
+            $table->integer('branch_id');
 
             //relaciones
-            $table->foreignId('branch_id')
-                ->nullable();
+            /* $table->foreignId('branch_id')
+                ->nullable(); */
 
             $table->timestamps();
         });

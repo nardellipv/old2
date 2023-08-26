@@ -46,6 +46,24 @@
                         <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
                     </li>
                 </ul>
+                <ul id="main-menu" class="metismenu li_animation_delay">
+                    <li>
+                        <a href="#App" class="has-arrow"><i class="fa fa-user"></i><span>Clientes</span></a>
+                        <ul>
+                            <li><a href="{{ route('list.client') }}">Clientes</a></li>
+                            <li><a href="{{ route('addNew.client') }}">Agregar Cliente</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul id="main-menu" class="metismenu li_animation_delay">
+                    <li>
+                        <a href="#App" class="has-arrow"><i class="fa fa-wrench"></i><span>Productos</span></a>
+                        <ul>
+                            <li><a href="{{ route('list.product') }}">Productos</a></li>
+                            <li><a href="{{ route('addNew.product') }}">Agregar Producto</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <hr>
                 <ul id="main-menu" class="metismenu li_animation_delay">
                     <li>

@@ -22,13 +22,6 @@ class DashboardController extends Controller
                 ->where('branch_id', checkUserBranch()[1]->id)
                 ->get();
 
-            $sellingCount = Sale::select('*', DB::raw('SUM(price) as sum'))
-                ->where('branch_id', checkUserBranch()[1]->id)
-                ->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
-                ->get();
-
             $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
                 ->get();
         } else {
@@ -37,12 +30,6 @@ class DashboardController extends Controller
 
             $products = Product::with(['branch'])
                 ->where('show', 'Y')
-                ->get();
-
-            $sellingCount = Sale::select('*', DB::raw('SUM(price) as sum'))
-                ->whereMonth('created_at', date('m'))
-                ->whereYear('created_at', date('Y'))
-                ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
                 ->get();
 
             $employees = Employee::get();
@@ -63,17 +50,16 @@ class DashboardController extends Controller
             ->count();
 
         $clientAllBranchSum = Client::select('*', DB::raw('COUNT(*) as count'))
-            ->groupBy('created_at')
+        ->whereMonth('created_at', date('m'))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
             ->get();
-
-
 
         $payments = Payment::get();
 
         return view('admin.index', compact(
             'clients',
             'products',
-            'sellingCount',
             'sellingAllBranchCount',
             'sellingAllBranchSum',
             'clientAllBranchCount',

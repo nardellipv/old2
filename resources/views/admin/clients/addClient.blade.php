@@ -6,26 +6,26 @@
         @include('alerts.error')
         <div class="card">
             <div class="header">
-                <h2>Agregar Nuevo Barbero</h2>
+                <h2>Agregar Nuevo Cliente</h2>
             </div>
             <div class="body">
-                <form id="basic-form" method="post" action="{{ route('add.employee') }}">
+                <form id="basic-form" method="post" action="{{ route('add.client') }}">
                     @csrf
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre Barbero" required>
+                        <input type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Nombre Cliente" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="centro@oldbarberchair.com.ar">
+                        <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="centro@ejemplo.com.ar">
                     </div>
                     <div class="form-group">
-                        <label>Dirección</label>
-                        <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="San Martín 567, ciudad" required>
+                        <label>Cumpleaños</label>
+                        <input type="date" class="form-control" value="{{ old('birthday') }}" name="birthday">
                     </div>
                     <div class="form-group">
                         <label>Teléfono</label>
-                        <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="1233345" required>
+                        <input type="text" class="form-control" value="{{ old('phone') }}" name="phone" placeholder="23123434" required>
                     </div>
                     <div class="form-group">
                         <label>Sucursal</label>

@@ -15,7 +15,7 @@ class BranchController extends Controller
         return view('admin.branches.indexBranch', compact('branches'));
     }
 
-    public function ActiveBranches($id)
+    public function activeBranches($id)
     {
         if ($id == 0) {
             $branch = User::where('id', userConnect()->id)
