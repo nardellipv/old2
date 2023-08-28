@@ -6,7 +6,8 @@ use App\Http\Requests\AddEmployeeRequest;
 use App\Http\Requests\EditEmployeeRequest;
 use App\Models\Branch;
 use App\Models\Employee;
-use Illuminate\Http\Request;
+use App\Models\Sale;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -16,13 +17,29 @@ class EmployeeController extends Controller
             $employees = Employee::with(['branch'])
                 ->where('branch_id', checkUserBranch()[1]->id)
                 ->get();
-
         } else {
             $employees = Employee::with(['branch'])
                 ->get();
         }
 
         return view('admin.employees.indexEmployee', compact('employees'));
+    }
+
+    public function profileEmployee($id)
+    {
+        $employee = Employee::find($id);
+
+        $detailWorks = Sale::with(['client', 'product'])
+            ->select('*', DB::raw('COUNT(*) as count'))
+            ->where('employee_id', $id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), 'product_id')
+            ->get();
+
+        $branches = Branch::get();
+
+        return view('admin.employees.profileEmployee', compact('employee', 'branches', 'detailWorks'));
     }
 
     public function addNewEmployee()

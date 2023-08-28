@@ -7,8 +7,6 @@ use App\Http\Requests\SaleWithOutClientRequest;
 use App\Models\Client;
 use App\Models\Product;
 use App\Models\Sale;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 class SaleController extends Controller
 {

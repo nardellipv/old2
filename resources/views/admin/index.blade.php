@@ -8,6 +8,7 @@
 @section('content')
 @include('admin.parts._widget')
 @include('admin.parts._clients')
+@include('admin.parts._employees')
 @include('admin.parts._selling')
 @endsection
 

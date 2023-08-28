@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/medios-pagos/borrar/{id}', [App\Http\Controllers\PaymentController::class, 'deletePayment'])->name('delete.payment');
 
     Route::get('/barberos', [App\Http\Controllers\EmployeeController::class, 'listEmployee'])->name('list.employee');
+    Route::get('/barberos-perfil/{id}', [App\Http\Controllers\EmployeeController::class, 'profileEmployee'])->name('profile.employee');
     Route::get('/barberos/agregar-nuevo', [App\Http\Controllers\EmployeeController::class, 'addNewEmployee'])->name('addNew.employee');
     Route::post('/barberos/agregar', [App\Http\Controllers\EmployeeController::class, 'addEmployee'])->name('add.employee');
     Route::get('/barberos/editar/{id}', [App\Http\Controllers\EmployeeController::class, 'editEmployee'])->name('edit.employee');

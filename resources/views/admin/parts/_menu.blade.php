@@ -57,10 +57,10 @@
                 </ul>
                 <ul id="main-menu" class="metismenu li_animation_delay">
                     <li>
-                        <a href="#App" class="has-arrow"><i class="fa fa-wrench"></i><span>Productos</span></a>
+                        <a href="#App" class="has-arrow"><i class="fa fa-cut"></i><span>Barberos</span></a>
                         <ul>
-                            <li><a href="{{ route('list.product') }}">Productos</a></li>
-                            <li><a href="{{ route('addNew.product') }}">Agregar Producto</a></li>
+                        <li><a href="{{ route('list.employee') }}">Listado</a></li>
+                            <li><a href="{{ route('addNew.employee') }}">Agregar Barbero</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -70,7 +70,12 @@
                         <a href="#App" class="has-arrow"><i class="fa fa-th-large"></i><span>Ajustes</span></a>
                         <ul>
                             <li><a href="{{ route('list.branch') }}">Sucursales</a></li>
-                            <li><a href="{{ route('list.employee') }}">Barberos</a></li>
+                            <li><a href="javascript:void(0);"><span>Productos</span></a>
+                                <ul>
+                                    <li><a href="{{ route('list.product') }}">Listado</a></li>
+                                    <li><a href="{{ route('addNew.product') }}">Agregar Producto</a></li>
+                                </ul>
+                            </li>
                             <li><a href="{{ route('list.payment') }}">Medios de Pagos</a></li>
                         </ul>
                     </li>

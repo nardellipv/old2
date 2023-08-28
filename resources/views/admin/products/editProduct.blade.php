@@ -6,7 +6,7 @@
         @include('alerts.error')
         <div class="card">
             <div class="header">
-                <h2>Agregar Nuevo Producto</h2>
+                <h2>Editar Producto <b>{{ $product->name }}</b></h2>
             </div>
             <div class="body">
                 <form id="basic-form" method="post" action="{{ route('upgrade.product', $product) }}">

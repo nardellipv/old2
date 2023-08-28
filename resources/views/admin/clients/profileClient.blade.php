@@ -1,5 +1,18 @@
 @extends('layouts.app')
 
+@section('css')
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+
+<style>
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="row clearfix">
     @include('alerts.error')
@@ -100,4 +113,37 @@
         </form>
     </div>
 </div>
+
+<div id="container"></div>
+@endsection
+
+@section('script')
+<script>
+    anychart.onDocumentReady(function() {
+
+        // set the data
+        var data = {
+            header: ['Name', 'Cantidad'],
+            rows: [
+                // ['San-Francisco (1906)', 1500],
+                @foreach ($clientCount as $countClient)
+                ['{{ \Carbon\Carbon::parse($countClient->created_at)->format('d/m/Y') }}' ,{{ $countClient->count }}],
+                @endforeach
+            ]
+        };
+
+        // create the chart
+        var chart = anychart.column();
+
+        // add data
+        chart.data(data);
+
+        // set the chart title
+        chart.title('Progreso de {{ $client->name }}');
+
+        // draw
+        chart.container('container');
+        chart.draw();
+    });
+</script>
 @endsection

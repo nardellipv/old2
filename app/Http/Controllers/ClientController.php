@@ -9,6 +9,8 @@ use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Sale;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -30,6 +32,11 @@ class ClientController extends Controller
     {
         $client = Client::find($id);
 
+        $clientCount = Sale::select('*', DB::raw('COUNT(*) as count'))
+            ->where('client_id', $id)
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->get();
+
         $products = Product::where('branch_id', checkUserBranch()[1]->id)
             ->get();
 
@@ -38,7 +45,7 @@ class ClientController extends Controller
 
         $payments = Payment::get();
 
-        return view('admin.clients.profileClient', compact('client', 'products', 'employees', 'payments'));
+        return view('admin.clients.profileClient', compact('client', 'products', 'employees', 'payments', 'clientCount'));
     }
 
     public function addNewClient()

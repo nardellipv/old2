@@ -32,7 +32,8 @@ class DashboardController extends Controller
                 ->where('show', 'Y')
                 ->get();
 
-            $employees = Employee::get();
+            $employees = Employee::with(['branch'])
+                ->get();
         }
 
         $sellingAllBranchCount = Sale::select('*', DB::raw('SUM(price) as sum'))
@@ -50,9 +51,9 @@ class DashboardController extends Controller
             ->count();
 
         $clientAllBranchSum = Client::select('*', DB::raw('COUNT(*) as count'))
-        ->whereMonth('created_at', date('m'))
-        ->whereYear('created_at', date('Y'))
-        ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
             ->get();
 
         $payments = Payment::get();
