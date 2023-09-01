@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\Employee;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -16,9 +17,11 @@ class EmployeeController extends Controller
         if (checkUserBranch()[1]) {
             $employees = Employee::with(['branch'])
                 ->where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', '1')
                 ->get();
         } else {
             $employees = Employee::with(['branch'])
+                ->where('status', '1')
                 ->get();
         }
 
@@ -31,15 +34,95 @@ class EmployeeController extends Controller
 
         $detailWorks = Sale::with(['client', 'product'])
             ->select('*', DB::raw('COUNT(*) as count'))
+            ->join('employees', 'employees.id', 'employee_id')
             ->where('employee_id', $id)
-            ->whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('Y'))
-            ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"), 'product_id')
+            ->whereMonth('sales.created_at', date('m'))
+            ->whereYear('sales.created_at', date('Y'))
+            ->groupBy(DB::raw("DATE_FORMAT(sales.created_at, '%Y-%m-%d')"), 'product_id')
+            ->get();
+
+        $timeLineWork = Sale::with(['client', 'product'])
+            ->where('employee_id', $id)
+            ->whereDay('created_at', date('d'))
+            ->get();
+
+        $pendingWorks = Sale::with(['product', 'client'])
+            ->where('employee_id', $id)
+            ->where('pending_pay', 0)
+            ->orderBy('created_at', 'ASC')
             ->get();
 
         $branches = Branch::get();
 
-        return view('admin.employees.profileEmployee', compact('employee', 'branches', 'detailWorks'));
+        return view('admin.employees.profileEmployee', compact('employee', 'branches', 'detailWorks', 'pendingWorks', 'timeLineWork'));
+    }
+
+    public function pendingWorksEmployee(Request $request, $id)
+    {
+        $employee = Employee::find($id);
+
+        foreach ($request->sale as $key => $idSale) {
+            $paymentsPending = Sale::where('id', $key)
+                ->where('pending_pay', 0)
+                ->first();
+
+            $paymentsPending->pending_pay = '1';
+            $paymentsPending->save();
+        }
+
+        $choosePay = Sale::with(['product'])
+            ->where('employee_id', $id)
+            ->where('pending_pay', '1')
+            ->get();
+
+        $sumTotal = Sale::where('employee_id', $id)
+            ->where('pending_pay', '1')
+            ->sum('commission_pay');
+
+        return view('admin.employees.invoicePayWork', compact('employee', 'choosePay', 'sumTotal'));
+    }
+
+    public function pendingCancelWorksEmployee($id)
+    {
+        $employee = Employee::find($id);
+
+        $choosePay = Sale::with(['product'])
+            ->where('employee_id', $id)
+            ->where('pending_pay', '1')
+            ->get();
+
+        $sumTotal = Sale::where('employee_id', $id)
+            ->where('pending_pay', '1')
+            ->sum('commission_pay');
+
+        return view('admin.employees.invoicePayWork', compact('employee', 'choosePay', 'sumTotal'));
+    }
+
+    public function cancelWorksEmployee($id)
+    {
+
+        $cancelWorks = Sale::where('employee_id', $id)
+            ->where('pending_pay', '1')
+            ->get();
+
+        foreach ($cancelWorks as $cancel) {
+            $cancel->pending_pay = '2';
+            $cancel->save();
+        }
+
+        toast('Se cancelo lo adeudado a ' . $cancel->employee->name . ' correctamente', 'success');
+        return redirect()->route('list.employee');
+    }
+
+    public function historialWorksEmployee($id)
+    {
+        $employee = Employee::find($id);
+
+        $historialWorks = Sale::with(['product', 'client'])
+            ->where('employee_id', $id)
+            ->paginate(10);
+
+        return view('admin.employees.historialWorks', compact('employee', 'historialWorks'));
     }
 
     public function addNewEmployee()
@@ -56,6 +139,7 @@ class EmployeeController extends Controller
             'email' => $request->email,
             'address' => $request->address,
             'phone' => $request->phone,
+            'commission' => $request->commission,
             'branch_id' => $request->branch_id,
         ]);
 
@@ -77,6 +161,7 @@ class EmployeeController extends Controller
         $employee->email = $request->email;
         $employee->address = $request->address;
         $employee->phone = $request->phone;
+        $employee->commission = $request->commission;
         $employee->branch_id = $request->branch_id;
         $employee->save();
 
@@ -90,6 +175,33 @@ class EmployeeController extends Controller
         $employee->delete();
 
         toast('Se eliminó el barbero ' . $employee->name . ' correctamente', 'success');
+        return redirect()->route('list.employee');
+    }
+
+    public function statusEmployee()
+    {
+        $employeeDown = Employee::with(['branch'])
+            ->where('status', '0')
+            ->get();
+
+        return view('admin.employees.ListDownEmployee', compact('employeeDown'));
+    }
+
+    public function downEmployee($id)
+    {
+        $employeeDown = Employee::find($id);
+        $employeeDown->status = 'N';
+        $employeeDown->save();
+
+        return redirect()->route('list.employee');
+    }
+
+    public function upEmployee($id)
+    {
+        $employeeDown = Employee::find($id);
+        $employeeDown->status = 'Y';
+        $employeeDown->save();
+
         return redirect()->route('list.employee');
     }
 }

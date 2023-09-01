@@ -12,4 +12,14 @@ class Payment extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function Cash()
+    {
+        return $this->belongsTo(Cash::class);
+    }
+
+    public function Sale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddBranchRequest;
+use App\Http\Requests\EditBranchRequest;
 use App\Models\Branch;
 use App\Models\User;
 
@@ -45,6 +46,24 @@ class BranchController extends Controller
         ]);
 
         toast('Se creo la sucursal ' . $branch->name . ' correctamente', 'success');
+        return redirect()->route('list.branch');
+    }
+
+    public function editBranches($id)
+    {
+        $branch = Branch::find($id);
+
+        return view('admin.branches.editBranch', compact('branch'));
+    }
+
+    public function upgradeBranches(EditBranchRequest $request, $id)
+    {
+        $branch = Branch::find($id);
+        $branch->name = $request->name;
+        $branch->email = $request->email;
+        $branch->address = $request->address;
+        $branch->save();
+
         return redirect()->route('list.branch');
     }
 }

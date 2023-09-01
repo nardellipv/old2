@@ -23,6 +23,7 @@ class DashboardController extends Controller
                 ->get();
 
             $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', 1)
                 ->get();
         } else {
             $clients = Client::with(['branch'])
@@ -33,6 +34,7 @@ class DashboardController extends Controller
                 ->get();
 
             $employees = Employee::with(['branch'])
+                ->where('status', 1)
                 ->get();
         }
 

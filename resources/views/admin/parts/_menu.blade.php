@@ -2,31 +2,24 @@
     <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-arrow-left"></i></button>
     <div class="sidebar-scroll">
         <div class="user-account">
-            <img src="{{ asset('assets/images/user.png') }}" class="rounded-circle user-photo" alt="User Profile Picture">
+            <img src="{{ asset('assets/images/xs/'.userConnect()->image.'.jpg') }}" class="user-photo media-object" alt="User">
             <div class="dropdown">
                 <span>Bienvenido,</span>
-                <a href="javascript:void(0);" class="dropdown-toggle user-name" data-toggle="dropdown"><strong>{{ userConnect()->name }}</strong></a>
-                <ul class="dropdown-menu dropdown-menu-right account">
-                    <li><a href="page-profile2.html"><i class="icon-user"></i>My Profile</a></li>
-                    <li><a href="app-inbox.html"><i class="icon-envelope-open"></i>Messages</a></li>
-                    <li><a href="javascript:void(0);"><i class="icon-settings"></i>Settings</a></li>
-                    <li class="divider"></li>
-                    <li><a href="page-login.html"><i class="icon-power"></i>Logout</a></li>
-                </ul>
+                <strong>{{ userConnect()->name }}</strong>
             </div>
             <hr>
             <ul class="row list-unstyled">
                 <li class="col-4">
-                    <small>Sales</small>
-                    <h6>561</h6>
+                    <small>Ventas M.</small>
+                    <h6>${{ $saleSum }}</h6>
                 </li>
                 <li class="col-4">
-                    <small>Order</small>
-                    <h6>920</h6>
+                    <small>Egreso M.</small>
+                    <h6>${{ $exitChasSum }}</h6>
                 </li>
                 <li class="col-4">
-                    <small>Revenue</small>
-                    <h6>$23B</h6>
+                    <small>Comis. M.</small>
+                    <h6>${{ $commissionSum }}</h6>
                 </li>
             </ul>
         </div>
@@ -48,6 +41,15 @@
                 </ul>
                 <ul id="main-menu" class="metismenu li_animation_delay">
                     <li>
+                        <a href="#App" class="has-arrow"><i class="fa fa-dollar"></i><span>Movimientos</span></a>
+                        <ul>
+                            <li><a href="{{ route('cash.index') }}">Caja</a></li>
+                            <li><a href="{{ route('receipt.index') }}">Recibos Generados</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul id="main-menu" class="metismenu li_animation_delay">
+                    <li>
                         <a href="#App" class="has-arrow"><i class="fa fa-user"></i><span>Clientes</span></a>
                         <ul>
                             <li><a href="{{ route('list.client') }}">Clientes</a></li>
@@ -59,8 +61,9 @@
                     <li>
                         <a href="#App" class="has-arrow"><i class="fa fa-cut"></i><span>Barberos</span></a>
                         <ul>
-                        <li><a href="{{ route('list.employee') }}">Listado</a></li>
+                            <li><a href="{{ route('list.employee') }}">Listado</a></li>
                             <li><a href="{{ route('addNew.employee') }}">Agregar Barbero</a></li>
+                            <li><a href="{{ route('status.employee') }}">Barbero Baja</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -77,6 +80,7 @@
                                 </ul>
                             </li>
                             <li><a href="{{ route('list.payment') }}">Medios de Pagos</a></li>
+                            <li><a href="{{ route('profile.index') }}">Perfil Usuario</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($clients as $client)
                             <tr>
-                                <td>{{ $client->name }}</td>
+                                <td><a href="{{ route('profile.client', $client) }}">{{ $client->name }}</a></td>
                                 <td>{{ $client->email }}</td>
                                 <td>{{ $client->phone }}</td>
                                 @if(empty(checkUserBranch()[1]))

@@ -37,4 +37,9 @@ class Branch extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function Cash()
+    {
+        return $this->hasMany(Cash::class);
+    }
 }

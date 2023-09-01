@@ -23,8 +23,10 @@ class SaleFactory extends Factory
             'branch_id' => rand('1','3'),
             'employee_id' => rand('1','3'),
             'price' => rand('100','2000'),
-            'comment' => fake()->sentence(10),
+            'quantity' => rand('1','4'),
+            'commission_pay' => rand('100','2000'),
             'invoice' => rand('100','2000'),
+            'pending_pay' => rand('1','0'),
             'created_at' => fake()->dateTimeBetween('-1 months', 'now'),
         ];
     }

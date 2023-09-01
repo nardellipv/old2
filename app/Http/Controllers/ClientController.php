@@ -37,11 +37,20 @@ class ClientController extends Controller
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%Y-%m-%d')"))
             ->get();
 
-        $products = Product::where('branch_id', checkUserBranch()[1]->id)
-            ->get();
+        if (checkUserBranch()[1]) {
+            $products = Product::where('branch_id', checkUserBranch()[1]->id)
+                ->get();
 
-        $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
-            ->get();
+            $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', 1)
+                ->get();
+        } else {
+            $products = Product::get();
+
+            $employees = Employee::where('status', 1)
+                ->get();
+        }
+
 
         $payments = Payment::get();
 

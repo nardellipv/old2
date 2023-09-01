@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="header">
-                <h2>Listado de Sucursales <a href="{{ route('addNew.branch') }}" type="button" class="btn btn-secondary">Agregar Nueva Sucursal</a></h2>
+                <h2>Listado de barberos dado de baja</h2>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -16,20 +16,19 @@
                                 <th>Nombre</th>
                                 <th>Email</th>
                                 <th>Dirección</th>
-                                <th><a href="{{ route('active.branch', $id=0) }}" class="btn btn-success btn-sm">Activar Todas</a></th>
+                                <th>Teléfono</th>
+                                <th>Sucursal</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($branches as $key=>$branch)
+                            @foreach ($employeeDown as $key=>$down)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $branch->name }}</td>
-                                <td>{{ Str::limit($branch->email,25) }}</td>
-                                <td>{{ Str::limit($branch->address,25) }}</td>
-                                <td>
-                                    <a href="{{ route('active.branch', $branch) }}" class="btn btn-success btn-sm">Activar</a>
-                                    <a href="{{ route('edit.branch', $branch) }}" type="button" class="btn btn-success btn-sm" title="Editar"><i class="fa fa-edit"></i></a>
-                                </td>
+                                <td><a href="{{ route('profile.employee', $down) }}"> {{ $down->name }}</td>
+                                <td>{{ Str::limit($down->email,25) }}</td>
+                                <td>{{ Str::limit($down->address,25) }}</td>
+                                <td>{{ $down->phone }}</td>
+                                <td>{{ $down->branch->name }}</td>
                             </tr>
                             @endforeach
                         </tbody>

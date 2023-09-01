@@ -10,7 +10,7 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'client_id', 'product_id', 'payment_id', 'branch_id', 'employee_id', 'price', 'pay', 'comment', 'invoice'
+        'client_id', 'product_id', 'payment_id', 'branch_id', 'employee_id', 'price', 'quantity', 'commission_pay', 'invoice', 'pending_pay'
     ];
 
     public function Client()
@@ -31,5 +31,10 @@ class Sale extends Model
     public function Employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function Payment()
+    {
+        return $this->belongsTo(Payment::class);
     }
 }

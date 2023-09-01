@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::view('/sucursales/agregar-nueva', 'admin.branches.addBranch')->name('addNew.branch');
     Route::post('/sucursales-agregar', [App\Http\Controllers\BranchController::class, 'addBranches'])->name('add.branch');
     Route::get('/sucursales-activar/{id}', [App\Http\Controllers\BranchController::class, 'activeBranches'])->name('active.branch');
+    Route::get('/sucursales/editar/{id}', [App\Http\Controllers\BranchController::class, 'editBranches'])->name('edit.branch');
+    Route::post('/sucursales/editado/{id}', [App\Http\Controllers\BranchController::class, 'upgradeBranches'])->name('upgrade.branch');
 
     Route::post('/venta-sin-cliente', [App\Http\Controllers\SaleController::class, 'saleWithOutClient'])->name('sale.withOutClient');
 
@@ -63,4 +65,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/barberos/editar/{id}', [App\Http\Controllers\EmployeeController::class, 'editEmployee'])->name('edit.employee');
     Route::post('/barberos/editado/{id}', [App\Http\Controllers\EmployeeController::class, 'upgradeEmployee'])->name('upgrade.employee');
     Route::get('/barberos/borrar/{id}', [App\Http\Controllers\EmployeeController::class, 'deleteEmployee'])->name('delete.employee');
+    Route::get('/barberos/status', [App\Http\Controllers\EmployeeController::class, 'statusEmployee'])->name('status.employee');
+    Route::get('/barberos/baja/{id}', [App\Http\Controllers\EmployeeController::class, 'downEmployee'])->name('down.employee');
+    Route::get('/barberos/alta/{id}', [App\Http\Controllers\EmployeeController::class, 'upEmployee'])->name('up.employee');
+    Route::get('/barberos/trabajos-historial/{id}', [App\Http\Controllers\EmployeeController::class, 'historialWorksEmployee'])->name('historialWorks.employee');
+    Route::post('/barberos/pagos-pendientes/{id}', [App\Http\Controllers\EmployeeController::class, 'pendingWorksEmployee'])->name('pendingWorks.employee');
+    Route::get('/barberos/cancelar-pagos/{id}', [App\Http\Controllers\EmployeeController::class, 'cancelWorksEmployee'])->name('cancelWorks.employee');
+    Route::get('/barberos/pendientes-cancelar-pagos/{id}', [App\Http\Controllers\EmployeeController::class, 'pendingCancelWorksEmployee'])->name('pendingCancelWorks.employee');
+
+    Route::get('/caja', [App\Http\Controllers\CashController::class, 'cashIndex'])->name('cash.index');
+    Route::post('/caja/movimiento-dinero', [App\Http\Controllers\CashController::class, 'cashMove'])->name('cash.move');
+    Route::get('/caja/recibo/{id}', [App\Http\Controllers\CashController::class, 'cashReceipt'])->name('cash.receipt');
+    Route::get('/caja/movimientos-recibos', [App\Http\Controllers\CashController::class, 'receiptIndex'])->name('receipt.index');
+
+    Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profileIndex'])->name('profile.index');
+    Route::view('/perfil/nuevo-usuario', 'admin.profile.addUser')->name('addNew.user');
+    Route::post('/perfil/addUser', [App\Http\Controllers\UserController::class, 'newUser'])->name('user.new');
+    Route::post('/perfil/actualizar/{id}', [App\Http\Controllers\UserController::class, 'upgradeIndex'])->name('upgrade.index');
 });

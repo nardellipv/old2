@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Payment::factory(6)->create();
         \App\Models\Employee::factory(10)->create();
         \App\Models\Sale::factory(10)->create();
+        \App\Models\Cash::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

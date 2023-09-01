@@ -13,19 +13,28 @@
                     @csrf
                     <div class="form-group">
                         <label>Nombre</label>
-                        <input type="text" class="form-control" name="name" value="{{ $employee->name }}" placeholder="Nombre Barbero" required>
+                        <input type="text" class="form-control" name="name" value="{{ $employee->name , old('name')}}" placeholder="Nombre Barbero" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" value="{{ $employee->email }}" placeholder="centro@oldbarberchair.com.ar">
+                        <input type="email" class="form-control" name="email" value="{{ $employee->email, old('email') }}" placeholder="centro@oldbarberchair.com.ar">
                     </div>
                     <div class="form-group">
                         <label>Dirección</label>
-                        <input type="text" class="form-control" name="address" value="{{ $employee->address }}" placeholder="San Martín 567, ciudad" required>
+                        <input type="text" class="form-control" name="address" value="{{ $employee->address, old('address') }}" placeholder="San Martín 567, ciudad" required>
                     </div>
                     <div class="form-group">
                         <label>Teléfono</label>
-                        <input type="text" class="form-control" name="phone" value="{{ $employee->phone }}" placeholder="1233345" required>
+                        <input type="text" class="form-control" name="phone" value="{{ $employee->phone, old('phone') }}" placeholder="1233345" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Comisión Barberos <small>Expresado en porcentaje</small></label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" value="{{ $employee->commission, old('commission') }}" name="commission">
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Sucursal</label>

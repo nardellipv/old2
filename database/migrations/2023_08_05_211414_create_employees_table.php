@@ -20,12 +20,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('phone', 50);
+            $table->integer('commission');
             $table->integer('branch_id');
-
-            //relaciones
-
-            /* $table->foreignId('branch_id')
-                ->constrained(); */
+            $table->enum('status', ['1','0']);
 
             $table->timestamps();
         });

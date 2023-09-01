@@ -42,6 +42,9 @@
                 <hr>
                 <small class="text-muted">Cumpleaños: </small>
                 <p class="mb-0">{{ \Carbon\Carbon::parse($client->birthday)->format('d/m/Y') }}</p>
+                <hr>
+                <small class="text-muted">Puntos: </small>
+                <p>{{ $client->total_points }}</p>
             </div>
         </div>
     </div>
@@ -105,7 +108,9 @@
                             </tbody>
                         </table>
                         <br>
-                        <button type="submit" class="btn btn-primary">Vender</button>
+                        @if(checkUserBranch()[1])
+                        <button type="submit" class="btn btn-secondary">Vender</button>
+                        @endif
                         <a href="{{ route('dashboard') }}" type="button" class="btn btn-warning">Volver</a>
                     </div>
                 </div>

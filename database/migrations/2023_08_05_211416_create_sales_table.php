@@ -16,30 +16,16 @@ return new class extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
 
-            //relaciones
-            /* $table->foreignId('client_id')
-                ->nullable();
-
-            $table->foreignId('product_id')
-                ->constrained();
-
-            $table->foreignId('payment_id')
-                ->constrained();
-
-            $table->foreignId('branch_id')
-                ->constrained(); */
-
-            /* $table->foreignId('employee_id')
-                ->constrained(); */
-
             $table->integer('client_id');
             $table->integer('product_id');
             $table->integer('payment_id');
             $table->integer('branch_id');
             $table->integer('employee_id');
             $table->integer('price');
-            $table->mediumText('comment')->nullable();
+            $table->integer('quantity');
+            $table->integer('commission_pay');
             $table->integer('invoice');
+            $table->integer('pending_pay');
 
             $table->timestamps();
         });

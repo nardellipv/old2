@@ -28,6 +28,15 @@
                         <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="1233345" required>
                     </div>
                     <div class="form-group">
+                        <label>Comisión Barberos <small>Expresado en porcentaje</small></label>
+                        <div class="input-group mb-3">
+                            <input type="number" class="form-control" value="{{ old('commission') }}" name="commission">
+                            <div class="input-group-append">
+                                <span class="input-group-text">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label>Sucursal</label>
                         <select class="custom-select" id="inputGroupSelect04" name="branch_id">
                             @foreach ($branches as $branch)

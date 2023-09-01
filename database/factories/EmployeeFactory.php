@@ -20,8 +20,10 @@ class EmployeeFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'address' => fake()->address(),
-            'phone' => fake()->numberBetween('100000','999999'),
-            'branch_id' => rand('1','3'),
+            'phone' => fake()->numberBetween('100000', '999999'),
+            'commission' => fake()->randomDigit(),
+            'branch_id' => rand('1', '3'),
+            'status' => fake()->randomElement(['1','0']),
         ];
     }
 }

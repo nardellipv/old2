@@ -11,7 +11,7 @@
                 @if(!empty(checkUserBranch()['1']->name))
                 <small>Conectado a <b>{{ checkUserBranch()['1']->name }}</b></small>
                 @else
-                <small>Conectado a <b>Todas las sucursales</b></small>
+                <small>Conectado a <b><mark>Todas las sucursales</mark></b></small>
                 @endif
             </div>
 
