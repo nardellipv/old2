@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('css')
+<script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-pie.min.js"></script>
+
+<link rel="stylesheet" href="{{ asset('assets/css/chart.css') }}">
+@endsection
+
 @section('content')
 <div class="row clearfix">
     @include('alerts.error')
@@ -45,6 +52,10 @@
                 </div>
             </form>
         </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12">
+        <div id="container"></div>
     </div>
 
     <div class="col-lg-12">
@@ -102,4 +113,38 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    var data = [
+        /* {
+            x: "A",
+            value: 637166
+        }, */
+        @foreach ($cashesDiaryChart as $diaryCash)
+            {
+                x:@if($diaryCash->move == 'I')
+                "Ingreso",
+                @else
+                "Egreso",
+                @endif
+                value: {{ $diaryCash->sum }}
+            },
+        @endforeach
+    ];
+
+    // create a pie chart and set the data
+    chart = anychart.pie(data);
+
+    /* set the inner radius
+    (to turn the pie chart into a doughnut chart)*/
+    chart.innerRadius("30%");
+
+    // set the container id
+    chart.container("container");
+
+    // initiate drawing the chart
+    chart.draw();
+</script>
 @endsection

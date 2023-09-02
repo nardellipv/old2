@@ -3,14 +3,7 @@
 @section('css')
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
 
-<style>
-    #container {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
-</style>
+<link rel="stylesheet" href="{{ asset('assets/css/chart.css') }}">
 @endsection
 
 @section('content')

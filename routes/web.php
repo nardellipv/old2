@@ -77,6 +77,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/caja/movimiento-dinero', [App\Http\Controllers\CashController::class, 'cashMove'])->name('cash.move');
     Route::get('/caja/recibo/{id}', [App\Http\Controllers\CashController::class, 'cashReceipt'])->name('cash.receipt');
     Route::get('/caja/movimientos-recibos', [App\Http\Controllers\CashController::class, 'receiptIndex'])->name('receipt.index');
+    Route::get('/caja/movimientos-historicos', [App\Http\Controllers\CashController::class, 'historicMove'])->name('historic.move');
+    Route::post('/caja/movimientos-filtro', [App\Http\Controllers\CashController::class, 'searchMove'])->name('search.move');
 
     Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profileIndex'])->name('profile.index');
     Route::view('/perfil/nuevo-usuario', 'admin.profile.addUser')->name('addNew.user');

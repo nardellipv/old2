@@ -45,6 +45,7 @@
                         <ul>
                             <li><a href="{{ route('cash.index') }}">Caja</a></li>
                             <li><a href="{{ route('receipt.index') }}">Recibos Generados</a></li>
+                            <li><a href="{{ route('historic.move') }}">Movimientos Historicos</a></li>
                         </ul>
                     </li>
                 </ul>

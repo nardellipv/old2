@@ -9,48 +9,54 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-                <h2>Recibos generados</h2>
+                <h2>Movimientos Diarios</h2>
             </div>
             <div class="body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                         <thead>
                             <tr>
-                                <th>Recibo #</th>
-                                <th>Fecha</th>
-                                <th>Producto</th>
+                                <th>#</th>
+                                <th>Monto</th>
+                                <th>Motivo</th>
                                 <th>Medio de Pago</th>
+                                <th>Recibo #</th>
+                                <th>Movimiento</th>
                                 @if(empty(checkUserBranch()[1]))
                                 <th>Sucursal</th>
                                 @endif
-                                <th>Barbero</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th>Total</th>
-                                <th>Comisión</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($invoices as $invoice)
-                            <tr>
-                                <td><a href="{{ route('cash.receipt', $invoice->invoice) }}"> {{ $invoice->invoice }}</a></td>
-                                <td>{{ \Carbon\Carbon::parse($invoice->created_at)->format('d/m/Y') }}</td>
-                                <td>{{ $invoice->product->name }}</td>
+                            @foreach ($search as $key=>$move)
+                            <tr class="{{ $move->move == 'E' ? 'l-blush' : '' }}">
+                                <td>{{ $key + 1 }}</td>
+                                <td>${{ $move->mount }}</td>
+                                <td>{{ Str::limit($move->comment,50) }}</td>
                                 <td>
-                                    @if (!empty($invoice->payment->name))
-                                    {{ $invoice->payment->name }}
+                                    @if (!empty($move->payment->name))
+                                    {{ $move->payment->name }}
                                     @else
-                                    -------
+                                    -----------
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(!empty($move->invoice_id))
+                                    <a href="{{ route('cash.receipt', $move->invoice_id) }}"> {{ $move->invoice_id }}</a>
+                                    @else
+                                    ------
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($move->move == 'I')
+                                    Ingreso de dinero
+                                    @else
+                                    Egreso de dinero
                                     @endif
                                 </td>
                                 @if(empty(checkUserBranch()[1]))
-                                <td>{{ $invoice->branch->name }}</td>
+                                <td>{{ $move->branch->name }}</td>
                                 @endif
-                                <td>{{ $invoice->employee->name }}</td>
-                                <td>${{ $invoice->price }}</td>
-                                <td>{{ $invoice->quantity }}</td>
-                                <td>${{ $invoice->price * $invoice->quantity }}</td>
-                                <td>${{ $invoice->commission_pay }}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -70,5 +76,4 @@
 <script src="{{ asset('assets/vendor/jquery-datatable/buttons/buttons.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
-
 @endsection
