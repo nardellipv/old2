@@ -17,6 +17,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Fecha</th>
                                 <th>Monto</th>
                                 <th>Motivo</th>
                                 <th>Medio de Pago</th>
@@ -31,6 +32,7 @@
                             @foreach ($search as $key=>$move)
                             <tr class="{{ $move->move == 'E' ? 'l-blush' : '' }}">
                                 <td>{{ $key + 1 }}</td>
+                                <td>{{ \Carbon\Carbon::parse($move->created_at)->format('d/m/Y') }}</td>
                                 <td>${{ $move->mount }}</td>
                                 <td>{{ Str::limit($move->comment,50) }}</td>
                                 <td>

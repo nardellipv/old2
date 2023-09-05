@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddMoveCashRequest;
 use App\Http\Requests\SearchMoveRequest;
+use App\Http\Requests\SearchReciveRequest;
 use App\Models\Cash;
 use App\Models\Payment;
 use App\Models\Sale;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class CashController extends Controller
@@ -20,7 +20,7 @@ class CashController extends Controller
         if (checkUserBranch()[1]) {
             $cashMove = Cash::with(['payment'])
                 ->where('branch_id', checkUserBranch()[1]->id)
-                ->whereDay('created_at', date('d'))
+                ->whereDate('created_at', date('Y-m-d'))
                 ->paginate(10);
 
             $cashesDiaryChart = Cash::select('*', DB::raw('SUM(mount) as sum'))
@@ -30,7 +30,7 @@ class CashController extends Controller
                 ->get();
         } else {
             $cashMove = Cash::with(['payment', 'branch'])
-                ->whereDay('created_at', date('d'))
+                ->whereDate('created_at', date('Y-m-d'))
                 ->paginate(10);
         }
 
@@ -58,9 +58,11 @@ class CashController extends Controller
         if (checkUserBranch()[1]) {
             $invoices = Sale::with(['branch', 'product', 'payment', 'employee'])
                 ->where('branch_id', checkUserBranch()[1]->id)
+                ->whereYear('created_at', date('Y'))
                 ->get();
         } else {
             $invoices = Sale::with(['branch', 'product', 'payment', 'employee'])
+                ->whereYear('created_at', date('Y'))
                 ->get();
         }
 
@@ -95,23 +97,35 @@ class CashController extends Controller
         if (checkUserBranch()[1]) {
             $cashMove = Cash::with(['payment'])
                 ->where('branch_id', checkUserBranch()[1]->id)
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->get();
 
             $incomeWidget = Cash::where('branch_id', checkUserBranch()[1]->id)
                 ->where('move', 'I')
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->sum('mount');
 
             $billWidget = Cash::where('branch_id', checkUserBranch()[1]->id)
                 ->where('move', 'E')
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->sum('mount');
         } else {
             $cashMove = Cash::with(['payment', 'branch'])
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->get();
 
             $incomeWidget = Cash::where('move', 'I')
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->sum('mount');
 
             $billWidget = Cash::where('move', 'E')
+                ->whereYear('created_at', date('Y'))
+                ->orderBy('created_at', 'DESC')
                 ->sum('mount');
         }
 
@@ -128,12 +142,14 @@ class CashController extends Controller
                     ->where('branch_id', checkUserBranch()[1]->id)
                     ->whereDate('created_at', '>=', $request->dateFrom)
                     ->whereDate('created_at', '<=', $request->dateEnd)
+                    ->orderBy('created_at', 'DESC')
                     ->get();
             } else {
                 $search = Cash::with(['payment'])
                     ->where('branch_id', checkUserBranch()[1]->id)
                     ->whereDate('created_at', '>=', $request->dateFrom)
                     ->whereDate('created_at', '<=', $request->dateEnd)
+                    ->orderBy('created_at', 'DESC')
                     ->where('move', $request->move)
                     ->get();
             }
@@ -142,15 +158,32 @@ class CashController extends Controller
                 $search = Cash::with(['payment', 'branch'])
                     ->whereDate('created_at', '>=', $request->dateFrom)
                     ->whereDate('created_at', '<=', $request->dateEnd)
+                    ->orderBy('created_at', 'DESC')
                     ->get();
             } else {
                 $search = Cash::with(['payment', 'branch'])
                     ->whereDate('created_at', '>=', $request->dateFrom)
                     ->whereDate('created_at', '<=', $request->dateEnd)
+                    ->orderBy('created_at', 'DESC')
                     ->where('move', $request->move)
                     ->get();
             }
         }
+
+        return view('admin.cash.resultFilter', compact('search', 'payments'));
+    }
+
+    public function searchReciveMove(SearchReciveRequest $request)
+    {
+        $payments = Payment::get();
+
+        $search = Cash::with(['payment'])
+            ->where('branch_id', checkUserBranch()[1]->id)
+            ->whereYear('created_at', date('Y'))
+            ->whereDate('created_at', '>=', $request->dateFrom)
+            ->whereDate('created_at', '<=', $request->dateEnd)
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
         return view('admin.cash.resultFilter', compact('search', 'payments'));
     }

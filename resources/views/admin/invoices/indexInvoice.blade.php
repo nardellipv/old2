@@ -2,11 +2,15 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css') }}">
+
+<link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
 @endsection
 
 @section('content')
 <div class="row clearfix">
     <div class="col-lg-12">
+        @include('alerts.error')
+        @include('admin.invoices._filter')
         <div class="card">
             <div class="header">
                 <h2>Recibos generados</h2>
@@ -71,4 +75,5 @@
 <script src="{{ asset('assets/vendor/jquery-datatable/buttons/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-datatable/buttons/buttons.print.min.js') }}"></script>
 
+<script src="{{ asset('assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 @endsection

@@ -43,7 +43,7 @@ class EmployeeController extends Controller
 
         $timeLineWork = Sale::with(['client', 'product'])
             ->where('employee_id', $id)
-            ->whereDay('created_at', date('d'))
+            ->whereDate('created_at', date('Y-m-d'))
             ->get();
 
         $pendingWorks = Sale::with(['product', 'client'])
