@@ -108,6 +108,10 @@
                                     <input id="radioWithOutpoint" type="radio" name="image" value="avatar10">
                                     <img class="user-img-avatar" src="{{ asset('assets/images/xs/avatar10.jpg') }}" />
                                 </label>
+                                <label class="fancy-radio">
+                                    <input id="radioWithOutpoint" type="radio" name="image" value="avatar11">
+                                    <img class="user-img-avatar" src="{{ asset('assets/images/xs/avatar11.jpg') }}" />
+                                </label>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Guardar</button>
