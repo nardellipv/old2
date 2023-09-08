@@ -13,6 +13,20 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'https://weatherapi-com.p.rapidapi.com/current.json?q=Mendoza%2C%20Argentina', [
+            'headers' => [
+                'X-RapidAPI-Host' => 'weatherapi-com.p.rapidapi.com',
+                'X-RapidAPI-Key' => 'c28840c35bmsh18fb99974c04ba2p15d404jsn145dc5f77af4',
+            ],
+        ]);
+
+        // echo $response->getBody();
+
+        $j = $response->getBody();
+        $weather = json_decode($j);
+
         if (checkUserBranch()[1]) {
             $clients = Client::with(['branch'])
                 ->where('branch_id', checkUserBranch()[1]->id)
@@ -68,7 +82,8 @@ class DashboardController extends Controller
             'clientAllBranchCount',
             'clientAllBranchSum',
             'employees',
-            'payments'
+            'payments',
+            'weather'
         ));
     }
 }

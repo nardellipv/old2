@@ -3,7 +3,7 @@
         <div class="navbar-brand">
             <button type="button" class="btn-toggle-offcanvas"><i class="fa fa-bars"></i></button>
             <button type="button" class="btn-toggle-fullwidth"><i class="fa fa-bars"></i></button>
-            <a href="index.html">Old Barber Chair</a>
+            <a href="{{ route('dashboard') }}">Old Barber Chair</a>
         </div>
 
         <div class="navbar-right">

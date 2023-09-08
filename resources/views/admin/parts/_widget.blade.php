@@ -1,5 +1,5 @@
 <div class="row clearfix">
-    <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card number-chart">
             <div class="body">
                 <div class="number">
@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6">
+    <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card number-chart">
             <div class="body">
                 <div class="number">
@@ -26,6 +26,22 @@
                 @foreach ($sellingAllBranchCount as $allBranch)
                 {{ $allBranch->sum }},
                 @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="card weather4">
+            <div class="body">
+                <div class="row">
+                    <div class="col-6">
+                        <img src="{{ $weather->current->condition->icon }}">
+                        <p>Mendoza</p>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h3 class="">{{ $weather->current->temp_c }}° <span>C</span> </h3>
+                        <span>{{ date('d/m/Y') }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
