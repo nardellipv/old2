@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/clear', function () {
     \Artisan::call('config:clear');
@@ -11,9 +10,7 @@ Route::get('/clear', function () {
     return 'FINISHED';
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(["register" => false]);
 

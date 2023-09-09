@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $response = $client->request('GET', 'https://weatherapi-com.p.rapidapi.com/current.json?q=Mendoza%2C%20Argentina', [
             'headers' => [
                 'X-RapidAPI-Host' => 'weatherapi-com.p.rapidapi.com',
-                'X-RapidAPI-Key' => 'c28840c35bmsh18fb99974c04ba2p15d404jsn145dc5f77af4',
+                'X-RapidAPI-Key' => '7644444f5dmsh2b3045f3e947681p17a1dejsn9e8a8e11a5fd',
             ],
         ]);
 
