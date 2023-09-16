@@ -36,7 +36,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="header">
-            <h2>Perfil de <b>{{ $user->name }}</b> <a href="{{ route('addNew.user') }}" type="button" class="btn btn-secondary">Agregar Nuevo Usuario</a></h2>
+                <h2>Perfil de <b>{{ $user->name }}</b> <a href="{{ route('addNew.user') }}" type="button" class="btn btn-secondary">Agregar Nuevo Usuario</a></h2>
             </div>
             <div class="body">
                 <label>Imagen de Perfil</label>
@@ -62,9 +62,21 @@
                                 <label>Teléfono</label>
                                 <input type="text" class="form-control" name="phone" value="{{ $user->phone }}" placeholder="Ingresar Teléfono" required>
                             </div>
+                            @if(userConnect()->admin == 'Y')
+                            <div class="form-group">
+                                <label>Sucursal</label>
+                                <select class="custom-select" id="inputGroupSelect04" name="branch_id">
+                                    <option value="{{ $user->branch_id }}">{{ $user->branch->name }}</option>
+                                    <option disabled>-----------------------</option>
+                                    @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @endif
                             <div class="form-group">
                                 <label>Contraseña</label>
-                                <input type="password" class="form-control" name="password" placeholder="Ingresar Contraseña" required>
+                                <input type="password" class="form-control" name="password" placeholder="Ingresar Contraseña">
                             </div>
                             <div class="form-group">
                                 <label>Imagen de perfil</label><br>

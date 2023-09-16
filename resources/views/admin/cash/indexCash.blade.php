@@ -47,7 +47,7 @@
                     @if(checkUserBranch()[1])
                     <button type="submit" class="btn btn-secondary">Realizar el Movimiento</button>
                     @else
-                    <button type="submit" class="btn btn-secondary disabled">Realizar el Movimiento</button>
+                    <button type="button" class="btn btn-secondary disabled">Realizar el Movimiento</button>
                     @endif
                 </div>
             </form>

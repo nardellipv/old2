@@ -57,6 +57,14 @@
                                 <input type="text" class="form-control" name="phone" placeholder="Ingresar Teléfono" required>
                             </div>
                             <div class="form-group">
+                                <label>Sucursal</label>
+                                <select class="custom-select" id="inputGroupSelect04" name="branch_id">
+                                    @foreach ($branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Contraseña</label>
                                 <input type="password" class="form-control" name="password" placeholder="Ingresar Contraseña" required>
                             </div>

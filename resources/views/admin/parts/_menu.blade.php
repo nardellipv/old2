@@ -81,7 +81,21 @@
                                 </ul>
                             </li>
                             <li><a href="{{ route('list.payment') }}">Medios de Pagos</a></li>
-                            <li><a href="{{ route('profile.index') }}">Perfil Usuario</a></li>
+                            @if(userConnect()->admin == 'Y')
+                            <li><a href="javascript:void(0);"><span>Usuarios</span></a>
+                                <ul>
+                                    <li><a href="{{ route('user.list') }}">Listado</a></li>
+                                    <li><a href="{{ route('addNew.user') }}">Agregar Usuario</a></li>
+                                    <li><a href="{{ route('profile.index', userConnect()->id) }}">Mi Perfil</a></li>
+                                </ul>
+                            </li>
+                            @else
+                            <li><a href="javascript:void(0);"><span>Usuarios</span></a>
+                                <ul>
+                                    <li><a href="{{ route('profile.index', userConnect()->id) }}">Mi Perfil</a></li>
+                                </ul>
+                            </li>
+                            @endif
                         </ul>
                     </li>
                 </ul>

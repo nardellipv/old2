@@ -13,9 +13,9 @@ function userConnect()
 function checkUserBranch()
 {
     $userBranch = User::where('id', userConnect()->id)
-        ->first('branch');
+        ->first('branch_id');
 
-    $branchTemp = Branch::where('id', $userBranch->branch)
+    $branchTemp = Branch::where('id', $userBranch->branch_id)
         ->first();
 
     return [$userBranch, $branchTemp];

@@ -48,6 +48,7 @@ class SaleController extends Controller
     public function saleClient(SaleClientRequest $request, $id)
     {
 
+        // dd($request->all());
         $invoiceNum = invoiceNumberTemp();
 
         $employee = Employee::where('id', $request->employee_id)
@@ -79,16 +80,17 @@ class SaleController extends Controller
 
                 $client->total_points = $total_points;
                 $client->save();
+
+                Cash::create([
+                    'mount' => $product->price,
+                    'comment' => 'Venta de producto',
+                    'payment_id' => $request->payment_id,
+                    'invoice_id' => $saleWithClient->invoice,
+                    'move' => 'I',
+                    'branch_id' => checkUserBranch()[1]->id
+                ]);
             }
 
-            Cash::create([
-                'mount' => $product->price,
-                'comment' => 'Venta de producto',
-                'payment_id' => $request->payment_id,
-                'invoice_id' => $saleWithClient->invoice,
-                'move' => 'I',
-                'branch_id' => checkUserBranch()[1]->id
-            ]);
         }
 
         toast('Venta realizada con éxito', 'success');

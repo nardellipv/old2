@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('email', 150)->unique();
             $table->string('phone')->unique();
             $table->string('image');
-            $table->integer('branch')->nullable();
+            $table->integer('branch_id')->nullable();
+            $table->enum('admin', ['Y','N'])->default('N');
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

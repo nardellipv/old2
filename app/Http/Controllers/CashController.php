@@ -32,6 +32,11 @@ class CashController extends Controller
             $cashMove = Cash::with(['payment', 'branch'])
                 ->whereDate('created_at', date('Y-m-d'))
                 ->paginate(10);
+
+            $cashesDiaryChart = Cash::select('*', DB::raw('SUM(mount) as sum'))
+                ->whereDate('created_at', now())
+                ->groupBy('move')
+                ->get();
         }
 
         return view('admin.cash.indexCash', compact('payments', 'cashMove', 'cashesDiaryChart'));

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AddEmployeeRequest;
 use App\Http\Requests\EditEmployeeRequest;
 use App\Models\Branch;
+use App\Models\Cash;
 use App\Models\Employee;
 use App\Models\Sale;
 use Illuminate\Support\Facades\DB;
@@ -78,6 +79,14 @@ class EmployeeController extends Controller
         $sumTotal = Sale::where('employee_id', $id)
             ->where('pending_pay', '1')
             ->sum('commission_pay');
+
+        Cash::create([
+            'mount' => $sumTotal,
+            'comment' => 'Pago comisión barbero' . $employee->name,
+            'payment_id' => 1,
+            'move' => 'E',
+            'branch_id' => $employee->branch_id,
+        ]);
 
         return view('admin.employees.invoicePayWork', compact('employee', 'choosePay', 'sumTotal'));
     }

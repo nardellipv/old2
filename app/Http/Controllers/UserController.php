@@ -4,17 +4,35 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddUserRequest;
 use App\Http\Requests\EditProfileUserRequest;
+use App\Models\Branch;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function profileIndex()
+    public function addNewUser()
     {
-        $user = User::where('id', userConnect()->id)
-        ->first();
+        $branches = Branch::get();
 
-        return view('admin.profile.indexProfile', compact('user'));
+        return view('admin.profile.addUser', compact('branches'));
+    }
+
+    public function profileIndex($id)
+    {
+        $user = User::where('id', $id)
+            ->first();
+
+        $branches = Branch::get();
+
+        return view('admin.profile.profile', compact('user', 'branches'));
+    }
+
+    public function listUser()
+    {
+        $users = User::with(['branch'])
+            ->get();
+
+        return view('admin.profile.indexUsers', compact('users'));
     }
 
     public function upgradeIndex(EditProfileUserRequest $request, $id)
@@ -23,8 +41,15 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = Hash::make($request->password);
-        $user->image = $request->image;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        if ($request->image) {
+            $user->image = $request->image;
+        }
+        if ($request->branch_id) {
+            $user->branch_id = $request->branch_id;
+        }
         $user->save();
 
         toast('Se actualizó el perfil correctamente', 'success');
@@ -37,10 +62,12 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'image' => $request->image,
+            'branch_id' => $request->branch_id,
             'password' => Hash::make($request->password),
         ]);
 
-        toast('Se creó el nuevo usuario '. $user->name .' correctamente', 'success');
+        toast('Se creó el nuevo usuario ' . $user->name . ' correctamente', 'success');
         return redirect()->route('dashboard');
     }
 }

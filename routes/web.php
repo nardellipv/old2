@@ -17,7 +17,7 @@ Auth::routes(["register" => false]);
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'Dashboard'])->name('dashboard');
 
-    Route::get('/sucursales', [App\Http\Controllers\BranchController::class, 'listBranches'])->name('list.branch');
+    Route::get('/sucursales', [App\Http\Controllers\BranchController::class, 'listBranches'])->name('list.branch')->middleware('UserAdmin');
     Route::view('/sucursales/agregar-nueva', 'admin.branches.addBranch')->name('addNew.branch');
     Route::post('/sucursales-agregar', [App\Http\Controllers\BranchController::class, 'addBranches'])->name('add.branch');
     Route::get('/sucursales-activar/{id}', [App\Http\Controllers\BranchController::class, 'activeBranches'])->name('active.branch');
@@ -34,23 +34,23 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cliente/agregar', [App\Http\Controllers\ClientController::class, 'addClient'])->name('add.client');
     Route::get('/cliente/editar/{id}', [App\Http\Controllers\ClientController::class, 'editClient'])->name('edit.client');
     Route::post('/cliente/editado/{id}', [App\Http\Controllers\ClientController::class, 'upgradeClient'])->name('upgrade.client');
-    Route::get('/cliente/eliminar/{id}', [App\Http\Controllers\ClientController::class, 'deleteClient'])->name('delete.client');
+    Route::get('/cliente/eliminar/{id}', [App\Http\Controllers\ClientController::class, 'deleteClient'])->name('delete.client')->middleware('UserAdmin');
 
-    Route::get('/producto', [App\Http\Controllers\ProductController::class, 'listProduct'])->name('list.product');
+    Route::get('/producto', [App\Http\Controllers\ProductController::class, 'listProduct'])->name('list.product')->middleware('UserAdmin');
     Route::get('/producto/activar-exchange/{id}', [App\Http\Controllers\ProductController::class, 'activeExchangeProduct'])->name('activeExchange.product');
     Route::get('/producto/desactivar-exchange/{id}', [App\Http\Controllers\ProductController::class, 'desactiveExchangeProduct'])->name('desactiveExchange.product');
-    Route::get('/producto/agregar-nuevo', [App\Http\Controllers\ProductController::class, 'addNewProduct'])->name('addNew.product');
+    Route::get('/producto/agregar-nuevo', [App\Http\Controllers\ProductController::class, 'addNewProduct'])->name('addNew.product')->middleware('UserAdmin');
     Route::post('/producto/agregar', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('add.product');
     Route::get('/producto/editar/{id}', [App\Http\Controllers\ProductController::class, 'editProduct'])->name('edit.product');
     Route::post('/producto/editado/{id}', [App\Http\Controllers\ProductController::class, 'upgradeProduct'])->name('upgrade.product');
     Route::get('/producto/eliminar/{id}', [App\Http\Controllers\ProductController::class, 'deleteProduct'])->name('delete.product');
 
-    Route::get('/medios-pagos', [App\Http\Controllers\PaymentController::class, 'listPayment'])->name('list.payment');
+    Route::get('/medios-pagos', [App\Http\Controllers\PaymentController::class, 'listPayment'])->name('list.payment')->middleware('UserAdmin');
     Route::view('/medios-pagos/agregar-nuevo', 'admin.payments.addPayment')->name('addNew.payment');
     Route::post('/medios-pagos/agregar', [App\Http\Controllers\PaymentController::class, 'addPayment'])->name('add.payment');
     Route::get('/medios-pagos/editar/{id}', [App\Http\Controllers\PaymentController::class, 'editPayment'])->name('edit.payment');
-    Route::post('/medios-pagos/editado/{id}', [App\Http\Controllers\PaymentController::class, 'upgradePayment'])->name('upgrade.payment');
-    Route::get('/medios-pagos/borrar/{id}', [App\Http\Controllers\PaymentController::class, 'deletePayment'])->name('delete.payment');
+    Route::post('/medios-pagos/editado/{id}', [App\Http\Controllers\PaymentController::class, 'upgradePayment'])->name('upgrade.payment')->middleware('UserAdmin');
+    Route::get('/medios-pagos/borrar/{id}', [App\Http\Controllers\PaymentController::class, 'deletePayment'])->name('delete.payment')->middleware('UserAdmin');
 
     Route::get('/barberos', [App\Http\Controllers\EmployeeController::class, 'listEmployee'])->name('list.employee');
     Route::get('/barberos-perfil/{id}', [App\Http\Controllers\EmployeeController::class, 'profileEmployee'])->name('profile.employee');
@@ -75,8 +75,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/caja/movimientos-filtro', [App\Http\Controllers\CashController::class, 'searchMove'])->name('search.move');
     Route::post('/caja/recibos-filtro', [App\Http\Controllers\CashController::class, 'searchReciveMove'])->name('searchRecive.move');
 
-    Route::get('/perfil', [App\Http\Controllers\UserController::class, 'profileIndex'])->name('profile.index');
-    Route::view('/perfil/nuevo-usuario', 'admin.profile.addUser')->name('addNew.user');
+    Route::get('/perfil/listado', [App\Http\Controllers\UserController::class, 'listUser'])->name('user.list');
+    Route::get('/perfil/nuevo-usuario', [App\Http\Controllers\UserController::class, 'addNewUser'])->name('addNew.user');
+    Route::get('/perfil/{id}', [App\Http\Controllers\UserController::class, 'profileIndex'])->name('profile.index');
     Route::post('/perfil/addUser', [App\Http\Controllers\UserController::class, 'newUser'])->name('user.new');
     Route::post('/perfil/actualizar/{id}', [App\Http\Controllers\UserController::class, 'upgradeIndex'])->name('upgrade.index');
+
+    Route::view('/error/error403', 'errors.403')->name('error.403');
 });

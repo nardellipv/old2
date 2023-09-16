@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'image',
+        'branch_id',
         'password',
     ];
 
@@ -46,6 +47,6 @@ class User extends Authenticatable
 
     public function Branch()
     {
-        return $this->hasMany(Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 }

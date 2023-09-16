@@ -3,7 +3,7 @@
         <div class="card number-chart">
             <div class="body">
                 <div class="number">
-                    <h6>CLIENTES <small> Todas las sucursales</small></h6>
+                    <h6>CLIENTES </h6>
                     <span>{{ $clientAllBranchCount }}</span>
                 </div>
             </div>
@@ -18,7 +18,7 @@
         <div class="card number-chart">
             <div class="body">
                 <div class="number">
-                    <h6>VENTAS MENSUALES<small> Todas las sucursales</small></h6>
+                    <h6>VENTAS MENSUALES</h6>
                     <span>$ {{ $sellingAllBranchSum }}</span>
                 </div>
             </div>
