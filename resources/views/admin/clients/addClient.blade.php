@@ -30,6 +30,8 @@
                     <div class="form-group">
                         <label>Sucursal</label>
                         <select class="custom-select" id="inputGroupSelect04" name="branch_id">
+                            <option value="{{ checkUserBranch()[1]->id }}">{{ checkUserBranch()[1]->name }}</option>
+                            <option disabled>-------------------</option>
                             @foreach ($branches as $branch)
                             <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                             @endforeach

@@ -36,7 +36,7 @@
             <nav id="left-sidebar-nav" class="sidebar-nav">
                 <ul id="main-menu" class="metismenu li_animation_delay">
                     <li class="{{ Route::currentRouteName() == 'dashboard' ? 'active' : ''}}">
-                        <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+                        <a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i><span>Escritorio</span></a>
                     </li>
                 </ul>
                 <ul id="main-menu" class="metismenu li_animation_delay">

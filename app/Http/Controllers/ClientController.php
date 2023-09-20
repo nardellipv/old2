@@ -75,7 +75,7 @@ class ClientController extends Controller
         ]);
 
         toast('Se agregó el cliente ' . $client->name . ' correctamente', 'success');
-        return redirect()->route('list.client');
+        return redirect()->to('/perfil-cliente/' .$client->id);
     }
 
     public function editClient($id)

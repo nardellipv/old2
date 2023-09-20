@@ -24,9 +24,6 @@
                                     <p class="services_hide">
                                         Cortes clásicos o modernos, a tijera, desvanecidos a máquina o navaja. Además, te asesoramos para elegir el corte que más se adecúe a tu fisionomía y estilo
                                     </p>
-                                    <div class="services-hide">
-                                        Nothing is better than a good-looking older man.&nbsp;(Sunday - Tuesday until 4 pm)
-                                    </div>
                                 </div>
                                 <!--  panel body end-->
                             </div>
@@ -90,7 +87,7 @@
                                 <!--  panel body start -->
                                 <div class="panel-body panel_body">
                                     <p class="services_hide">
-                                        Mientras esperas tu turno, refréscate con una cerveza artesanal “Coronel Dorrego”, o una gaseosa.
+                                        Mientras esperas tu turno, refréscate con una cerveza o una gaseosa.
 
                                         Para días más fríos disfruta nuestro servicio de cafetería.
                                     </p>

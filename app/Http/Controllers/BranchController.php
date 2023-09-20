@@ -21,7 +21,7 @@ class BranchController extends Controller
         if ($id == 0) {
             $branch = User::where('id', userConnect()->id)
                 ->first();
-            $branch->branch = $id;
+            $branch->branch_id = $id;
             $branch->save();
 
             toast('Se cambio a la vista de todas las sucursales correctamente', 'success');
@@ -29,7 +29,8 @@ class BranchController extends Controller
         } else {
             $branch = User::where('id', userConnect()->id)
                 ->first();
-            $branch->branch = $id;
+
+            $branch->branch_id = $id;
             $branch->save();
 
             toast('Se cambio a la sucursal ' . checkUserBranch()[1]->name . ' correctamente', 'success');

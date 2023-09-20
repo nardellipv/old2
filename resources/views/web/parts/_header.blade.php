@@ -96,6 +96,11 @@
                                         Contacto
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('login') }}">
+                                        Ingresar
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                     </div>
