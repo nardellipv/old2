@@ -142,6 +142,7 @@ class CashController extends Controller
         $payments = Payment::get();
 
         if (checkUserBranch()[1]) {
+
             if (!$request->move) {
                 $search = Cash::with(['payment'])
                     ->where('branch_id', checkUserBranch()[1]->id)
@@ -175,7 +176,23 @@ class CashController extends Controller
             }
         }
 
-        return view('admin.cash.resultFilter', compact('search', 'payments'));
+
+        $incomeWidgetFilter = $search->where('move','I')->sum('mount');
+        $billWidgetFilter = $search->where('move','E')->sum('mount');
+
+        /*if(($search)->empty()){
+            $incomeWidgetFilter=0;
+            $billWidgetFilter=0;
+        }
+
+         foreach ($search as $value) {
+            $incomeWidgetFilter = $value->where('move', 'I')->get();
+
+            $billWidgetFilter = $value->where('move', 'E')->get();
+        } */
+        // dd($search->where('move','I')->sum('mount'));
+
+        return view('admin.cash.resultFilter', compact('search', 'payments', 'incomeWidgetFilter', 'billWidgetFilter'));
     }
 
     public function searchReciveMove(SearchReciveRequest $request)

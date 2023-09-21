@@ -32,8 +32,7 @@ class DashboardController extends Controller
                 ->where('branch_id', checkUserBranch()[1]->id)
                 ->get();
 
-            $products = Product::where('show', 'Y')
-                ->where('branch_id', checkUserBranch()[1]->id)
+            $products = Product::where('branch_id', checkUserBranch()[1]->id)
                 ->get();
 
             $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
@@ -44,7 +43,6 @@ class DashboardController extends Controller
                 ->get();
 
             $products = Product::with(['branch'])
-                ->where('show', 'Y')
                 ->get();
 
             $employees = Employee::with(['branch'])

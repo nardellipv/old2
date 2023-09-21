@@ -7,6 +7,7 @@
 @section('content')
 <div class="row clearfix">
     <div class="col-lg-12">
+        @include('admin.cash._widgetConsolidateFilter')
         <div class="card">
             <div class="header">
                 <h2>Movimientos Diarios</h2>

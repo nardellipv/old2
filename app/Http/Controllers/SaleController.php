@@ -18,7 +18,7 @@ class SaleController extends Controller
         $employee = Employee::where('id', $request->employee_id)
             ->first();
 
-        $commission = number_format((($request->price * $employee->commission)  / 100), 0);
+        $commission = (($request->price * $employee->commission)  / 100);
 
         $saleWithOutClient = Sale::create([
             'product_id' => $request->product_id,
