@@ -50,6 +50,7 @@ class EmployeeController extends Controller
         $pendingWorks = Sale::with(['product', 'client'])
             ->where('employee_id', $id)
             ->where('pending_pay', 0)
+            ->where('commission_pay', '!=', '0')
             ->orderBy('created_at', 'ASC')
             ->get();
 

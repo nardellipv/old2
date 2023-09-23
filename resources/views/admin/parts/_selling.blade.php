@@ -23,6 +23,7 @@
                                     <td>{{ $product->name }} - ${{ $product->price }}</td>
                                     <input value="{{ $product->id }}" name="product_id" hidden>
                                     <input value="{{ $product->price }}" name="price" hidden>
+                                    <input value="{{ $product->commission }}" name="commission" hidden>
                                     <td>
                                         @if(!empty(checkUserBranch()[1]))
                                         <div class="input-group">

@@ -42,14 +42,21 @@
                     </div>
 
                     <div class="row clearfix">
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-4 col-md-12">
                             <div class="form-group">
                                 <label>Publicar</label>
                                 <label class="fancy-radio"><input name="show" value="Y" type="radio" checked><span><i></i>Si</span></label>
                                 <label class="fancy-radio"><input name="show" value="N" type="radio"><span><i></i>No</span></label>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-12">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="form-group">
+                                <label>Comisiona</label>
+                                <label class="fancy-radio"><input name="commission" value="Y" type="radio"><span><i></i>Si</span></label>
+                                <label class="fancy-radio"><input name="commission" value="N" type="radio" checked><span><i></i>No</span></label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
                             <div class="form-group">
                                 <label>Producto canjeable</label>
                                 <label class="fancy-radio"><input name="exchange" value="Y" type="radio" checked><span><i></i>Si</span></label>

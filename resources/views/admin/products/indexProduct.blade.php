@@ -17,7 +17,8 @@
                                 <th>Precio</th>
                                 <th>Oferta</th>
                                 <th>Puntos</th>
-                                <th>Puntos para canjar</th>
+                                <th>Puntos canjar</th>
+                                <th>Comisiona</th>
                                 <th>Canje</th>
                                 <th></th>
                             </tr>
@@ -35,6 +36,7 @@
                                 @endif
                                 <td>{{ $product->point }}</td>
                                 <td>{{ $product->point_changed }}</td>
+                                <td>{{ $product->commission }}</td>
                                 <td>
                                     @if($product->exchange == 'Y')
                                     <a href="{{ route('activeExchange.product', $product) }}">

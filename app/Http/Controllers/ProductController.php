@@ -37,6 +37,7 @@ class ProductController extends Controller
             'point_changed' => $request->point_changed,
             'branch_id' => $request->branch_id,
             'show' => $request->show,
+            'commission' => $request->commission,
             'exchange' => $request->exchange,
         ]);
 
@@ -62,6 +63,7 @@ class ProductController extends Controller
         $product->point_changed = $request->point_changed;
         $product->branch_id = $request->branch_id;
         $product->show = $request->show;
+        $product->commission = $request->commission;
         $product->exchange = $request->exchange;
         $product->save();
 

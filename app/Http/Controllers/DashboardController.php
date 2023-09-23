@@ -22,8 +22,6 @@ class DashboardController extends Controller
             ],
         ]);
 
-        // echo $response->getBody();
-
         $j = $response->getBody();
         $weather = json_decode($j);
 

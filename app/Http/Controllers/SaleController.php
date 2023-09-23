@@ -18,7 +18,11 @@ class SaleController extends Controller
         $employee = Employee::where('id', $request->employee_id)
             ->first();
 
-        $commission = (($request->price * $employee->commission)  / 100);
+        if ($request->commission == 'Y') {
+            $commission = (($request->price * $employee->commission)  / 100);
+        } else {
+            $commission = 0;
+        }
 
         $saleWithOutClient = Sale::create([
             'product_id' => $request->product_id,
@@ -58,7 +62,11 @@ class SaleController extends Controller
             $product = Product::where('id', $key)
                 ->first();
 
-            $commission = number_format(((($product->price * $data) * $employee->commission)  / 100), 0);
+            if ($product->commission == 'Y') {
+                $commission = (($product->price * $employee->commission)  / 100);
+            } else {
+                $commission = 0;
+            }
 
             $client = Client::find($id);
 
@@ -90,7 +98,6 @@ class SaleController extends Controller
                     'branch_id' => checkUserBranch()[1]->id
                 ]);
             }
-
         }
 
         toast('Venta realizada con éxito', 'success');
