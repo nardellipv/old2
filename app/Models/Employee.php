@@ -10,7 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'email', 'address', 'phone', 'commission', 'branch_id'
+        'name', 'email', 'address', 'phone', 'commission', 'branch_id', 'status'
     ];
 
     public function Branch()

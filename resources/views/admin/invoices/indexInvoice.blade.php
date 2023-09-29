@@ -50,7 +50,13 @@
                                 @if(empty(checkUserBranch()[1]))
                                 <td>{{ $invoice->branch->name }}</td>
                                 @endif
-                                <td>{{ $invoice->employee->name }}</td>
+                                <td>
+                                    @if (!empty($invoice->employee->name))
+                                    {{ $invoice->employee->name }}
+                                    @else
+                                    -------
+                                    @endif
+                                </td>
                                 <td>${{ $invoice->price }}</td>
                                 <td>{{ $invoice->quantity }}</td>
                                 <td>${{ $invoice->price * $invoice->quantity }}</td>

@@ -40,7 +40,7 @@
                                     <a href="{{ route('profile.employee', $employee) }}" type="button" class="btn btn-success" title="Save"><span class="sr-only">Ver Perfil</span> <i class="fa fa-eye"></i></a>
                                     @if(!empty(checkUserBranch()[1]))
                                     <a href="{{ route('edit.employee', $employee) }}" type="button" class="btn btn-success" title="Editar"><span class="sr-only">Editar</span> <i class="fa fa-edit"></i></a>
-                                    <a href="{{ route('delete.employee', $employee) }}" type="button" class="btn btn-danger" title="Borrar"><span class="sr-only">Borrar</span> <i class="fa fa-trash-o"></i></a>
+                                    <a href="{{ route('down.employee', $employee) }}" type="button" class="btn btn-danger" title="Borrar"><span class="sr-only">Borrar</span> <i class="fa fa-trash-o"></i></a>
                                     @else
                                     <a href="" type="button" class="btn btn-success disabled" title="Save"><span class="sr-only">Editar</span> <i class="fa fa-edit"></i></a>
                                     <a href="" type="button" class="btn btn-danger disabled" title="Delete"><span class="sr-only">Borrar</span> <i class="fa fa-trash-o"></i></a>

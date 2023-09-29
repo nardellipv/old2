@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone', 50);
             $table->integer('commission');
             $table->integer('branch_id');
-            $table->enum('status', ['1','0']);
+            $table->enum('status', ['1','0'])->default('1');
 
             $table->timestamps();
         });

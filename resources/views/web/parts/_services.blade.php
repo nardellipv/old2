@@ -105,7 +105,7 @@
                 </h2>
                 <div class="right_side_mdl">
                     <p>
-                    Old Barber Chair, una barbería clásica, tanto en estilo como en la aplicación de técnicas de corte.
+                        Old Barber Chair, una barbería clásica, tanto en estilo como en la aplicación de técnicas de corte.
                     </p>
                     <img alt="" src="{{ asset('assetsWeb/images/img1.jpeg') }}" class="img-responsive hair_cut" width="50%">
                     <img alt="" src="{{ asset('assetsWeb/images/img3.jpeg') }}" class="img-responsive saving_img" width="25%">

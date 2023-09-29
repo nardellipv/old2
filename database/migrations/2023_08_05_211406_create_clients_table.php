@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('phone')->nullable();
             $table->integer('total_points');
             $table->integer('branch_id');
+            $table->enum('status', ['1','0'])->default('1');
 
             //relaciones
             /* $table->foreignId('branch_id')

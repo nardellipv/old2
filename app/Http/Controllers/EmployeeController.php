@@ -179,15 +179,6 @@ class EmployeeController extends Controller
         return redirect()->route('list.employee');
     }
 
-    public function deleteEmployee($id)
-    {
-        $employee = Employee::find($id);
-        $employee->delete();
-
-        toast('Se eliminó el barbero ' . $employee->name . ' correctamente', 'success');
-        return redirect()->route('list.employee');
-    }
-
     public function statusEmployee()
     {
         $employeeDown = Employee::with(['branch'])
@@ -200,7 +191,7 @@ class EmployeeController extends Controller
     public function downEmployee($id)
     {
         $employeeDown = Employee::find($id);
-        $employeeDown->status = 'N';
+        $employeeDown->status = '0';
         $employeeDown->save();
 
         return redirect()->route('list.employee');
@@ -209,7 +200,7 @@ class EmployeeController extends Controller
     public function upEmployee($id)
     {
         $employeeDown = Employee::find($id);
-        $employeeDown->status = 'Y';
+        $employeeDown->status = '1';
         $employeeDown->save();
 
         return redirect()->route('list.employee');

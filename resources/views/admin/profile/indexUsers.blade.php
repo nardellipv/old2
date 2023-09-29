@@ -5,7 +5,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="header">
-                <h2>Listado de barberos <a href="{{ route('addNew.user') }}" type="button" class="btn btn-secondary">Agregar Nuevo Usuario</a></h2>
+                <h2>Listado de usuarios <a href="{{ route('addNew.user') }}" type="button" class="btn btn-secondary">Agregar Nuevo Usuario</a></h2>
             </div>
             <div class="body">
                 <div class="table-responsive">

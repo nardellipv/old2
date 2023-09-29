@@ -18,6 +18,7 @@ class PaymentFactory extends Factory
     {
         return [
             'name' => fake()->creditCardType(),
+            'status' => fake()->randomElement(['1','0']),
         ];
     }
 }

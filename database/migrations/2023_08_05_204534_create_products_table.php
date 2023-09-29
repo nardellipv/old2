@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('exchange', ['Y', 'N']);
             $table->enum('commission', ['Y', 'N']);
             $table->integer('branch_id');
+            $table->enum('status', ['1','0'])->default('1');
 
             //relaciones
             /* $table->foreignId('branch_id')

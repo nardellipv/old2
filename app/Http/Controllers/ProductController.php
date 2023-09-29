@@ -13,9 +13,11 @@ class ProductController extends Controller
     {
         if (checkUserBranch()[1]) {
             $products = Product::where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', '1')
                 ->get();
         } else {
-            $products = Product::get();
+            $products = Product::where('status', '1')
+                ->get();
         }
 
         return view('admin.products.indexProduct', compact('products'));
@@ -74,7 +76,8 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $product = Product::find($id);
-        $product->delete();
+        $product->status = '0';
+        $product->save();
 
         toast('Se eliminó el producto' . $product->name . ' correctamente', 'success');
         return redirect()->route('list.product');

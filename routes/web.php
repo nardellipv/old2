@@ -58,7 +58,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/barberos/agregar', [App\Http\Controllers\EmployeeController::class, 'addEmployee'])->name('add.employee');
     Route::get('/barberos/editar/{id}', [App\Http\Controllers\EmployeeController::class, 'editEmployee'])->name('edit.employee');
     Route::post('/barberos/editado/{id}', [App\Http\Controllers\EmployeeController::class, 'upgradeEmployee'])->name('upgrade.employee');
-    Route::get('/barberos/borrar/{id}', [App\Http\Controllers\EmployeeController::class, 'deleteEmployee'])->name('delete.employee');
     Route::get('/barberos/status', [App\Http\Controllers\EmployeeController::class, 'statusEmployee'])->name('status.employee');
     Route::get('/barberos/baja/{id}', [App\Http\Controllers\EmployeeController::class, 'downEmployee'])->name('down.employee');
     Route::get('/barberos/alta/{id}', [App\Http\Controllers\EmployeeController::class, 'upEmployee'])->name('up.employee');

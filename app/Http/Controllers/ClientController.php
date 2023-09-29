@@ -19,9 +19,11 @@ class ClientController extends Controller
         if (checkUserBranch()[1]) {
             $clients = Client::with(['branch'])
                 ->where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', 1)
                 ->get();
         } else {
             $clients = Client::with(['branch'])
+                ->where('status', 1)
                 ->get();
         }
 
@@ -75,7 +77,7 @@ class ClientController extends Controller
         ]);
 
         toast('Se agregó el cliente ' . $client->name . ' correctamente', 'success');
-        return redirect()->to('/perfil-cliente/' .$client->id);
+        return redirect()->to('/perfil-cliente/' . $client->id);
     }
 
     public function editClient($id)
@@ -104,7 +106,8 @@ class ClientController extends Controller
     public function deleteClient($id)
     {
         $client = Client::find($id);
-        $client->delete();
+        $client->status = '0';
+        $client->save();
 
         toast('Se eliminó el cliente ' . $client->name . ' correctamente', 'success');
         return redirect()->route('list.client');

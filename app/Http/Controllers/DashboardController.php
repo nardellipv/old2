@@ -28,9 +28,11 @@ class DashboardController extends Controller
         if (checkUserBranch()[1]) {
             $clients = Client::with(['branch'])
                 ->where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', '1')
                 ->get();
 
             $products = Product::where('branch_id', checkUserBranch()[1]->id)
+                ->where('status', '1')
                 ->get();
 
             $employees = Employee::where('branch_id', checkUserBranch()[1]->id)
@@ -38,9 +40,11 @@ class DashboardController extends Controller
                 ->get();
         } else {
             $clients = Client::with(['branch'])
+                ->where('status', 1)
                 ->get();
 
             $products = Product::with(['branch'])
+                ->where('status', '1')
                 ->get();
 
             $employees = Employee::with(['branch'])

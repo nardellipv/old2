@@ -23,6 +23,7 @@ class ClientFactory extends Factory
             'phone' => fake()->numberBetween($min = 100, $max = 9999999),
             'branch_id' => fake()->numberBetween('1','3'),
             'total_points' => fake()->numberBetween($min = 100, $max = 1000),
+            'status' => fake()->randomElement(['1','0']),
         ];
     }
 }

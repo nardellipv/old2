@@ -10,7 +10,8 @@ class PaymentController extends Controller
 {
     public function listPayment()
     {
-        $payments = Payment::get();
+        $payments = Payment::where('status', '1')
+        ->get();
 
         return view('admin.payments.indexPayment', compact('payments'));
     }
@@ -45,7 +46,8 @@ class PaymentController extends Controller
     public function deletePayment($id)
     {
         $payment = Payment::find($id);
-        $payment->delete();
+        $payment->status = '0';
+        $payment->save();
 
         toast('Se eliminó el medio de pago correctamente', 'success');
         return redirect()->route('list.payment');
