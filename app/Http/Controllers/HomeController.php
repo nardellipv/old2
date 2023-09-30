@@ -11,6 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         $prices = Product::where('show', 'Y')
+        ->orderBy('price', 'ASC')
         ->get();
 
         $countClient = Client::count();
